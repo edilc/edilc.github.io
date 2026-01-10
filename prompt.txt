@@ -1,0 +1,61 @@
+Create a static web page for "news.sys" — a daily news digest by Claude.
+
+## Content Requirements
+- Header: "news.sys" with subtle "news by Claude" attribution
+- 10 news headlines from various sources with brief blurbs
+- Each headline expands on click to reveal: a longer summary, key bullet points, and source links
+- No numbered items. No "live feed" text. No 'active monitoring' text No auto-animations (user-triggered only).
+
+## Aesthetic Process (IMPORTANT)
+
+**Step 1: Analyze the news.** Before designing, identify:
+- The dominant mood across today'"'"'s stories (ominous, hopeful, absurd, bureaucratic, scientific, chaotic, contemplative, urgent, mundane, surreal)
+- Recurring themes or domains (politics, technology, nature, conflict, discovery, economy, culture)
+- Any single story dramatic enough to anchor the visual tone
+
+**Step 2: Commit to ONE aesthetic direction.** Based on your analysis, choose a specific visual concept. Don'"'"'t blend—commit. Examples of directions (use these as inspiration, not a checklist):
+
+| News Mood | Possible Aesthetic Direction |
+|-----------|------------------------------|
+| Government/bureaucracy heavy | Classified documents, redacted files, manila folders, typewriter text, official stamps |
+| Science/nature discoveries | Field notebook, naturalist illustrations, specimen labels, botanical drawings, parchment textures |
+| Tech/cyber news | Terminal interface, phosphor glow, scan lines, monospace everything, ASCII decorations |
+| Economic/financial | Stock ticker aesthetic, ledger paper, banking forms, serif authority, green/black |
+| Absurd/weird news | Tabloid collage, ransom note typography, clip art chaos, garish colors |
+| Conflict/crisis | Broadcast interruption, emergency alert, high contrast, stark warnings |
+| Cultural/arts | Editorial magazine, gallery exhibition, refined typography, generous whitespace |
+| Mundane/local news | Community bulletin board, pushpins, handwritten notes, cork texture |
+
+**Step 3: Design with intention.** Your chosen direction should influence:
+- **Layout structure**: Single column? Split pane? Card grid? Sidebar index? Dossier format?
+- **Typography**: Bureaucratic serifs? Playful handwriting? Cold monospace? Elegant editorial?
+- **Color palette**: Derive from concept (manila/red for classified, green/cream for naturalist, amber/black for terminal)
+- **Decorative elements**: ASCII art, SVG illustrations, borders, stamps, textures, dividers—all should reinforce the theme
+- **Information density**: Sparse and contemplative? Dense and urgent?
+
+**Step 4: Create 1-3 thematic visual elements.** These should feel integral, not decorative:
+- Small SVG illustrations reflecting dominant story themes
+- ASCII art headers or dividers
+- Thematic icons or stamps
+- Textural backgrounds (subtle)
+
+**Step 5: Add a design rationale.** In the footer, include a small note explaining today'"'"'s aesthetic choice, e.g.:
+> "today'"'"'s design: field notebook (3 stories on species discovery, 2 on climate research)"
+
+## Technical Requirements
+- Single HTML file with embedded CSS and JS
+- Readable and functional—aesthetic experimentation should never compromise usability
+- Responsive (works on mobile)
+- Accessible (proper contrast, semantic HTML, keyboard navigation for expandable items)
+- No external dependencies except Google Fonts if needed
+
+## What to Avoid
+- Blending all inspirations into generic "retro-tech minimalist"
+- Color/font swaps as the only variation
+- Decorative elements that don'"'"'t connect to content
+- Cluttered or illegible results
+- The same layout every time
+
+Output only the HTML file content, no explanations.
+
+

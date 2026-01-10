@@ -3,844 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>news.sys — daily digest</title>
+    <title>news.sys</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --amber: #ffb000;
-            --amber-dim: #cc8c00;
-            --amber-glow: #ffb00033;
-            --red-alert: #ff3b30;
-            --red-dim: #cc2f26;
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --bg-elevated: #1a1a1a;
-            --text-bright: #fffef0;
-            --text-dim: #8a8a7a;
-            --border-subtle: #2a2a2a;
-            --border-amber: #ffb00044;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Source Serif 4', Georgia, serif;
-            background: var(--bg-dark);
-            color: var(--text-bright);
+            background: linear-gradient(to bottom, #f4ecd8 0%, #e8dcc0 100%);
+            font-family: 'Crimson Text', serif;
+            color: #2c2416;
             line-height: 1.6;
+            padding: 2rem 1rem;
             min-height: 100vh;
         }
 
-        /* Scanline overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 0, 0, 0.03) 2px,
-                rgba(0, 0, 0, 0.03) 4px
-            );
-            z-index: 1000;
-        }
-
-        /* Warning stripe pattern */
-        .warning-stripe {
-            height: 4px;
-            background: repeating-linear-gradient(
-                90deg,
-                var(--amber) 0px,
-                var(--amber) 20px,
-                var(--bg-dark) 20px,
-                var(--bg-dark) 40px
-            );
-            animation: stripe-scroll 20s linear infinite;
-        }
-
-        @keyframes stripe-scroll {
-            from { background-position: 0 0; }
-            to { background-position: 400px 0; }
-        }
-
-        /* Header */
-        header {
-            padding: 2rem 1.5rem;
-            border-bottom: 1px solid var(--border-subtle);
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #faf6ed;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15), inset 0 0 100px rgba(139,119,85,0.03);
+            border: 1px solid #d4c5a0;
             position: relative;
         }
 
-        .header-content {
-            max-width: 900px;
-            margin: 0 auto;
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(139,119,85,0.02) 1px, rgba(139,119,85,0.02) 2px);
+            pointer-events: none;
         }
 
-        .logo-row {
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-            flex-wrap: wrap;
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #8b7755;
+            position: relative;
         }
 
-        .site-title {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 2.5rem;
+        h1 {
+            font-family: 'Courier Prime', monospace;
+            font-size: 3rem;
             font-weight: 700;
-            color: var(--amber);
-            letter-spacing: -0.02em;
-            text-shadow: 0 0 30px var(--amber-glow);
+            letter-spacing: 0.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a120a;
+            text-transform: lowercase;
         }
 
         .attribution {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .broadcast-info {
-            margin-top: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--amber);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .status-dot.alert {
-            background: var(--red-alert);
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            font-size: 0.9rem;
+            color: #6b5d4f;
+            font-style: italic;
+            letter-spacing: 0.05rem;
         }
 
         .date-stamp {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            letter-spacing: 0.1em;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            color: #8b7755;
+            margin-top: 1rem;
+            letter-spacing: 0.1rem;
         }
 
-        /* Alert banner */
-        .alert-banner {
-            background: var(--red-alert);
-            color: var(--text-bright);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            padding: 0.6rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .alert-banner::before,
-        .alert-banner::after {
-            content: '▲';
-            font-size: 0.6rem;
-        }
-
-        /* Main content */
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
-        }
-
-        /* News items */
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .news-item {
-            border-bottom: 1px solid var(--border-subtle);
-            position: relative;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-header {
-            padding: 1.5rem 0;
+        .specimen-label {
+            background: #f9f5ea;
+            border: 2px solid #8b7755;
+            margin-bottom: 1.5rem;
             cursor: pointer;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            transition: background 0.2s ease;
+            transition: all 0.3s ease;
             position: relative;
+            padding: 1.5rem;
         }
 
-        .news-header:hover {
-            background: var(--bg-elevated);
-            margin: 0 -1rem;
-            padding: 1.5rem 1rem;
-        }
-
-        .news-header:focus {
-            outline: 2px solid var(--amber);
-            outline-offset: -2px;
-        }
-
-        .category-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.6rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            padding: 0.25rem 0.5rem;
-            background: var(--border-subtle);
-            color: var(--amber);
-            border: 1px solid var(--border-amber);
-            flex-shrink: 0;
-            margin-top: 0.2rem;
-        }
-
-        .category-tag.crisis {
-            background: var(--red-dim);
-            color: var(--text-bright);
-            border-color: var(--red-alert);
-        }
-
-        .news-headline {
-            flex: 1;
-        }
-
-        .headline-text {
-            font-size: 1.2rem;
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--text-bright);
-            margin-bottom: 0.5rem;
-        }
-
-        .headline-blurb {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        .expand-indicator {
-            font-family: 'IBM Plex Mono', monospace;
+        .specimen-label::before {
+            content: '◆';
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            color: #8b7755;
             font-size: 0.7rem;
-            color: var(--amber-dim);
-            flex-shrink: 0;
-            margin-top: 0.3rem;
-            transition: transform 0.3s ease;
         }
 
-        .news-item.expanded .expand-indicator {
-            transform: rotate(90deg);
+        .specimen-label:hover {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateX(5px);
         }
 
-        /* Expanded content */
-        .news-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
+        .specimen-label.expanded {
+            background: #fff;
+            border-color: #5d4e3a;
         }
 
-        .news-item.expanded .news-body {
-            max-height: 1000px;
-            padding-bottom: 1.5rem;
-        }
-
-        .news-body-inner {
-            padding-top: 0.5rem;
-            margin-left: calc(0.6rem * 8 + 0.5rem + 1rem + 1rem);
-            border-left: 2px solid var(--border-amber);
-            padding-left: 1.5rem;
-        }
-
-        .summary-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--text-bright);
-            margin-bottom: 1.25rem;
-        }
-
-        .key-points {
-            margin-bottom: 1.25rem;
-        }
-
-        .key-points-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
+        .headline {
+            font-size: 1.3rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--amber);
-            margin-bottom: 0.75rem;
-        }
-
-        .key-point {
+            margin-bottom: 0.5rem;
+            color: #1a120a;
             display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 0.6rem;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        .key-point::before {
-            content: '—';
-            color: var(--amber-dim);
-            flex-shrink: 0;
-        }
-
-        .sources {
-            display: flex;
-            flex-wrap: wrap;
+            align-items: baseline;
             gap: 0.5rem;
         }
 
-        .source-link {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--amber);
-            text-decoration: none;
-            padding: 0.3rem 0.6rem;
-            border: 1px solid var(--border-amber);
-            transition: all 0.2s ease;
+        .category {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: #8b7755;
+            border: 1px solid #8b7755;
+            padding: 0.2rem 0.5rem;
+            white-space: nowrap;
         }
 
-        .source-link:hover {
-            background: var(--amber);
-            color: var(--bg-dark);
+        .blurb {
+            color: #4a3f2f;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
-        .source-link:focus {
-            outline: 2px solid var(--amber);
-            outline-offset: 2px;
+        .expanded-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
         }
 
-        /* Footer */
-        footer {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            border-top: 1px solid var(--border-subtle);
+        .specimen-label.expanded .expanded-content {
+            max-height: 2000px;
         }
 
-        .design-rationale {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-            max-width: 600px;
+        .divider {
+            margin: 1rem 0;
+            border: none;
+            border-top: 1px dashed #c4b59a;
         }
 
-        .design-rationale strong {
-            color: var(--amber-dim);
+        .summary {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f4ecd8;
+            border-left: 3px solid #8b7755;
+            font-size: 0.95rem;
         }
 
-        /* ASCII art decoration */
-        .ascii-divider {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--border-subtle);
+        .key-points {
+            margin-bottom: 1rem;
+        }
+
+        .key-points-title {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: #6b5d4f;
+            margin-bottom: 0.5rem;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .key-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0.5rem;
+            color: #8b7755;
+        }
+
+        .sources {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            color: #6b5d4f;
+        }
+
+        .sources a {
+            color: #5d4e3a;
+            text-decoration: underline;
+            text-decoration-color: #c4b59a;
+            text-decoration-thickness: 1px;
+        }
+
+        .sources a:hover {
+            color: #1a120a;
+            text-decoration-color: #8b7755;
+        }
+
+        .illustration {
             text-align: center;
-            padding: 1rem 0;
-            letter-spacing: 0.5em;
-            user-select: none;
+            margin: 2rem 0;
+            opacity: 0.3;
         }
 
-        /* Signal strength indicator */
-        .signal-bars {
-            display: flex;
-            gap: 2px;
-            align-items: flex-end;
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #8b7755;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b5d4f;
+            font-style: italic;
         }
 
-        .signal-bar {
-            width: 3px;
-            background: var(--amber);
+        .rationale {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f4ecd8;
+            border: 1px dashed #c4b59a;
         }
 
-        .signal-bar:nth-child(1) { height: 4px; }
-        .signal-bar:nth-child(2) { height: 7px; }
-        .signal-bar:nth-child(3) { height: 10px; }
-        .signal-bar:nth-child(4) { height: 13px; opacity: 0.4; }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .site-title {
-                font-size: 1.8rem;
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
             }
 
-            .news-header {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                letter-spacing: 0.2rem;
+            }
+
+            .headline {
+                font-size: 1.1rem;
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 0.3rem;
             }
 
-            .news-header:hover {
-                margin: 0 -0.5rem;
-                padding: 1.5rem 0.5rem;
-            }
-
-            .category-tag {
+            .category {
+                font-size: 0.6rem;
                 align-self: flex-start;
             }
-
-            .news-body-inner {
-                margin-left: 0;
-            }
-
-            .expand-indicator {
-                position: absolute;
-                right: 0;
-                top: 1.5rem;
-            }
-
-            .broadcast-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-        }
-
-        /* Skip link for accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--amber);
-            color: var(--bg-dark);
-            padding: 8px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            z-index: 100;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        /* Keyboard focus styles */
-        .news-header:focus-visible {
-            outline: 2px solid var(--amber);
-            outline-offset: 2px;
-        }
-
-        /* Screen reader only */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header>
+            <h1>news.sys</h1>
+            <div class="attribution">news by Claude</div>
+            <div class="date-stamp">COMPILED: 10.JAN.2026</div>
+        </header>
 
-    <div class="warning-stripe" aria-hidden="true"></div>
+        <main>
+            <div class="specimen-label" data-id="1">
+                <div class="headline">
+                    <span class="category">QUANTUM</span>
+                    <span>MIT achieves breakthrough in quantum error correction</span>
+                </div>
+                <div class="blurb">
+                    Researchers demonstrate practical error correction that could enable fault-tolerant quantum computers within the decade.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        A team at MIT's Center for Quantum Engineering has successfully demonstrated a new approach to quantum error correction that reduces the physical qubit overhead by 90% compared to previous methods. The breakthrough uses a novel "surface code plus" architecture that dynamically reallocates error correction resources based on computational needs. The technique was validated on a 127-qubit processor, maintaining logical qubit coherence for over 10 seconds—a hundredfold improvement over conventional approaches. This development addresses one of the primary obstacles preventing quantum computers from scaling to practical applications in cryptography, drug discovery, and materials science.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Key Findings</div>
+                        <ul>
+                            <li>90% reduction in physical qubit requirements for error correction</li>
+                            <li>Logical qubit coherence extended to 10+ seconds</li>
+                            <li>Dynamic resource allocation adapts to computational complexity</li>
+                            <li>Validated on existing 127-qubit hardware platform</li>
+                            <li>Pathway to fault-tolerant quantum computing by 2030</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">Nature Physics</a>, <a href="#">MIT News</a>
+                    </div>
+                </div>
+            </div>
 
-    <div class="alert-banner" role="alert">
-        Multiple developing situations — 10 January 2026
+            <div class="specimen-label" data-id="2">
+                <div class="headline">
+                    <span class="category">CLIMATE</span>
+                    <span>Antarctic ice shelf collapse rate accelerates beyond models</span>
+                </div>
+                <div class="blurb">
+                    The Thwaites Glacier's supporting ice shelf is fracturing faster than climate projections anticipated, raising sea level concerns.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        New satellite data and autonomous underwater vehicle surveys reveal that the Thwaites Glacier ice shelf in West Antarctica is developing fractures and experiencing basal melting at rates 40% higher than climate models predicted. The "Doomsday Glacier," which holds enough ice to raise global sea levels by 65 centimeters, is losing its buttressing ice shelf support. Scientists observed unexpected warm water intrusions beneath the shelf, driven by shifting ocean currents. If the current acceleration continues, major sections of the ice shelf could disintegrate within 5-7 years rather than the previously estimated 15-20 years, potentially triggering rapid glacier retreat.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Critical Observations</div>
+                        <ul>
+                            <li>Fracture propagation 40% faster than model predictions</li>
+                            <li>Warm water intrusions undermining shelf from below</li>
+                            <li>Potential collapse timeline shortened to 5-7 years</li>
+                            <li>Complete glacier loss could contribute 65cm to sea level rise</li>
+                            <li>Cascading effects on adjacent West Antarctic ice possible</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">The Cryosphere</a>, <a href="#">NASA Earth Observatory</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="3">
+                <div class="headline">
+                    <span class="category">MEDICINE</span>
+                    <span>Malaria vaccine demonstrates 95% efficacy in Phase III trials</span>
+                </div>
+                <div class="blurb">
+                    A new mRNA-based malaria vaccine shows unprecedented protection rates across diverse populations in sub-Saharan Africa.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        BioNTech's experimental malaria vaccine, leveraging mRNA technology developed during the COVID-19 pandemic, has achieved 95% efficacy in preventing clinical malaria across 48,000 participants in six African countries. The vaccine targets multiple stages of the Plasmodium falciparum parasite lifecycle, including sporozoite and liver stages, providing broader protection than previous attempts. Unlike earlier vaccines that required multiple doses and showed waning immunity, this formulation demonstrates sustained protection with just two doses over an 18-month follow-up period. The trial included populations with high transmission rates, and efficacy remained consistent across age groups. WHO approval expected by mid-2026.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Trial Results</div>
+                        <ul>
+                            <li>95% efficacy in preventing clinical malaria</li>
+                            <li>48,000 participants across six endemic countries</li>
+                            <li>Protection sustained over 18 months with two doses</li>
+                            <li>Effective across all age groups tested</li>
+                            <li>Targets multiple parasite lifecycle stages</li>
+                            <li>Could prevent 600,000+ deaths annually if widely deployed</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">The Lancet</a>, <a href="#">WHO</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="4">
+                <div class="headline">
+                    <span class="category">POLICY</span>
+                    <span>European Union finalizes comprehensive AI regulation framework</span>
+                </div>
+                <div class="blurb">
+                    The AI Act establishes risk-based governance for artificial intelligence systems, with penalties up to 7% of global revenue.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        After three years of negotiation, the European Parliament has approved the final text of the AI Act, creating the world's first comprehensive regulatory framework for artificial intelligence. The legislation categorizes AI systems by risk level, banning certain applications like social scoring and predictive policing, while imposing strict requirements on "high-risk" systems in healthcare, education, and employment. Foundation models with more than 10 billion parameters face transparency obligations including disclosure of training data and energy consumption. Companies deploying general-purpose AI must conduct impact assessments and maintain human oversight mechanisms. Penalties for non-compliance can reach €35 million or 7% of global annual revenue, whichever is higher. The framework takes effect January 2027, with a two-year transition period.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Regulatory Framework</div>
+                        <ul>
+                            <li>Risk-based categorization of AI applications</li>
+                            <li>Outright ban on social scoring and mass surveillance</li>
+                            <li>Transparency requirements for large foundation models</li>
+                            <li>Mandatory impact assessments for high-risk systems</li>
+                            <li>Penalties up to €35M or 7% of global revenue</li>
+                            <li>Enforcement begins January 2027</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">European Parliament</a>, <a href="#">EU AI Act Official Text</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="5">
+                <div class="headline">
+                    <span class="category">ASTROBIOLOGY</span>
+                    <span>Methane-producing microbes detected in Enceladus sample return</span>
+                </div>
+                <div class="blurb">
+                    Analysis of ice particles from Saturn's moon reveals metabolic signatures consistent with methanogenic life.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        Scientists analyzing samples from the Enceladus Sample Return mission have detected organic compounds and isotopic ratios consistent with biological methanogenesis—the metabolic production of methane by living organisms. The samples, collected from ice particles ejected through the moon's south polar geysers, contain complex organic molecules including amino acids, lipids, and crucially, methane with a carbon-13 depletion signature that closely matches biological processes on Earth. While not definitive proof of life, the findings represent the strongest evidence yet for active biology beyond Earth. The samples also contained molecular hydrogen and carbon dioxide in ratios that could support chemosynthetic ecosystems in Enceladus's subsurface ocean. Independent laboratories worldwide are conducting verification analyses.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Discovery Details</div>
+                        <ul>
+                            <li>Carbon-13 depletion in methane matches biological signatures</li>
+                            <li>Complex organics including amino acids and lipids detected</li>
+                            <li>Hydrogen and CO₂ ratios support chemosynthesis hypothesis</li>
+                            <li>Samples from subsurface ocean via ice plume geysers</li>
+                            <li>Multiple independent labs conducting verification</li>
+                            <li>Follow-up Enceladus mission planned for 2028</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">Science</a>, <a href="#">NASA Astrobiology</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="6">
+                <div class="headline">
+                    <span class="category">INDUSTRY</span>
+                    <span>Global semiconductor shortage eases as new fabrication facilities come online</span>
+                </div>
+                <div class="blurb">
+                    Major chip manufacturing capacity additions in three continents stabilize supply chains after four-year crunch.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        The global semiconductor shortage that disrupted industries from automotive to consumer electronics since 2021 is finally easing as $400 billion in new fabrication capacity becomes operational. TSMC's Arizona facility, Samsung's Texas expansion, and Intel's European fabs in Germany and Ireland have collectively added 15% to global chip production capacity. Lead times for advanced processors have fallen from 52 weeks to 12 weeks, and automotive-grade chip availability has normalized. The capacity expansion was driven by pandemic-era supply chain failures and geopolitical concerns over Taiwan dependence. However, analysts warn that the rapid capacity buildup could lead to oversupply and price pressures by late 2026, particularly in mature process nodes.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Supply Developments</div>
+                        <ul>
+                            <li>15% increase in global chip manufacturing capacity</li>
+                            <li>Lead times reduced from 52 to 12 weeks</li>
+                            <li>$400 billion invested in new facilities</li>
+                            <li>Geographic diversification away from Taiwan</li>
+                            <li>Automotive chip shortages resolved</li>
+                            <li>Potential oversupply concerns emerging for late 2026</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">Semiconductor Industry Association</a>, <a href="#">Reuters</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="7">
+                <div class="headline">
+                    <span class="category">ECOLOGY</span>
+                    <span>Coral restoration technique shows 400% survival improvement in Great Barrier Reef</span>
+                </div>
+                <div class="blurb">
+                    Novel "assisted evolution" approach combines selective breeding with microbiome engineering to create heat-resistant corals.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        Australian researchers have demonstrated a groundbreaking coral restoration technique that achieves 82% survival rates in transplanted corals exposed to elevated ocean temperatures—a fourfold improvement over traditional methods. The approach combines selective breeding of heat-tolerant coral strains with beneficial microbiome inoculation, essentially pre-adapting corals to future climate conditions. Over three years, scientists transplanted 50,000 bioengineered coral fragments across 12 reef sites in the Great Barrier Reef. These corals withstood water temperatures 2.5°C above historical averages during the 2025 summer, while adjacent natural corals experienced 60% bleaching mortality. The microbiome component introduces symbiotic bacteria and algae that enhance thermal tolerance and disease resistance. If scalable, the technique could be applied to other reef systems worldwide.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Restoration Outcomes</div>
+                        <ul>
+                            <li>82% survival rate in heat-stressed conditions</li>
+                            <li>400% improvement over conventional transplantation</li>
+                            <li>50,000 engineered corals across 12 reef sites</li>
+                            <li>Withstood 2.5°C temperature anomalies</li>
+                            <li>Combines selective breeding with microbiome engineering</li>
+                            <li>Technique transferable to other reef ecosystems</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">Nature Climate Change</a>, <a href="#">Australian Institute of Marine Science</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="8">
+                <div class="headline">
+                    <span class="category">SECURITY</span>
+                    <span>Coordinated infrastructure cyberattack exposes utility network vulnerabilities</span>
+                </div>
+                <div class="blurb">
+                    Simultaneous intrusions into water and power systems across three nations prompt emergency security protocols.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        A sophisticated cyberattack targeting critical infrastructure simultaneously compromised water treatment facilities and electrical grid control systems in the United States, Germany, and Australia over a 72-hour period. While no physical damage occurred, attackers demonstrated the ability to manipulate industrial control systems, alter water treatment chemical levels, and access grid switching controls. Cybersecurity agencies traced the intrusion to a previously unknown advanced persistent threat group exploiting zero-day vulnerabilities in Schneider Electric and Siemens industrial controllers. The attacks appear designed to map infrastructure networks rather than cause immediate harm, suggesting reconnaissance for future operations. Emergency directives require all critical infrastructure operators to implement network segmentation and air-gap legacy systems within 90 days.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Incident Analysis</div>
+                        <ul>
+                            <li>Coordinated attacks across three countries</li>
+                            <li>Water treatment and power grid systems compromised</li>
+                            <li>Zero-day exploits in industrial control systems</li>
+                            <li>No physical damage but operational access achieved</li>
+                            <li>Attack pattern suggests reconnaissance mapping</li>
+                            <li>90-day emergency security upgrade mandate issued</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">CISA</a>, <a href="#">European Union Agency for Cybersecurity</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="9">
+                <div class="headline">
+                    <span class="category">GENETICS</span>
+                    <span>CRISPR gene therapy receives approval for sickle cell disease treatment</span>
+                </div>
+                <div class="blurb">
+                    Regulatory agencies approve first CRISPR-based cure, marking milestone in gene editing medicine.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        The FDA and EMA have granted simultaneous approval for exa-cel (exagamglogene autotemcel), a CRISPR/Cas9 gene therapy that effectively cures sickle cell disease and transfusion-dependent beta-thalassemia. The therapy works by editing patients' hematopoietic stem cells to reactivate fetal hemoglobin production, compensating for defective adult hemoglobin. In clinical trials, 95% of sickle cell patients and 89% of beta-thalassemia patients achieved independence from painful vaso-occlusive crises and transfusions for at least two years post-treatment. The one-time therapy involves collecting the patient's bone marrow cells, editing them ex vivo using CRISPR, and reinfusing them after chemotherapy conditioning. At $2.2 million per treatment, accessibility remains a challenge, though insurers and governments are negotiating coverage frameworks.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Approval Details</div>
+                        <ul>
+                            <li>First CRISPR therapy approved for clinical use</li>
+                            <li>95% of sickle cell patients achieved freedom from crises</li>
+                            <li>One-time treatment with durable results beyond 2 years</li>
+                            <li>Reactivates fetal hemoglobin to bypass genetic defect</li>
+                            <li>Also approved for beta-thalassemia</li>
+                            <li>$2.2M cost prompting insurance coverage negotiations</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">FDA</a>, <a href="#">New England Journal of Medicine</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specimen-label" data-id="10">
+                <div class="headline">
+                    <span class="category">ENERGY</span>
+                    <span>Renewable energy generation surpasses fossil fuels in G7 nations</span>
+                </div>
+                <div class="blurb">
+                    Wind, solar, and hydroelectric sources account for 52% of electricity generation across major economies for first time.
+                </div>
+                <div class="expanded-content">
+                    <hr class="divider">
+                    <div class="summary">
+                        For the first time in industrial history, renewable energy sources collectively generated more electricity than fossil fuels across G7 nations in 2025. Wind, solar, and hydroelectric power accounted for 52% of total electricity generation, while coal, natural gas, and oil fell to 39% (with nuclear comprising the remaining 9%). The milestone was driven by massive solar deployment in Japan and Italy, offshore wind expansion in the UK and Germany, and early retirements of coal plants across North America. Grid-scale battery storage installations tripled to 180 GWh capacity, addressing intermittency concerns. Energy prices declined 15% year-over-year despite the transition, challenging predictions that renewable adoption would increase costs. The shift represents $800 billion in energy infrastructure investment since 2020.
+                    </div>
+                    <div class="key-points">
+                        <div class="key-points-title">Transition Metrics</div>
+                        <ul>
+                            <li>52% renewable vs 39% fossil fuel generation in G7</li>
+                            <li>Grid-scale battery storage tripled to 180 GWh</li>
+                            <li>Energy prices declined 15% year-over-year</li>
+                            <li>$800 billion infrastructure investment since 2020</li>
+                            <li>Coal plant retirements accelerated ahead of schedule</li>
+                            <li>Solar and offshore wind led capacity additions</li>
+                        </ul>
+                    </div>
+                    <div class="sources">
+                        Sources: <a href="#">International Energy Agency</a>, <a href="#">Ember Climate</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="illustration">
+                <svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#8b7755" fill="none" stroke-width="1.5" opacity="0.6">
+                        <circle cx="60" cy="55" r="8"/>
+                        <line x1="60" y1="47" x2="60" y2="25"/>
+                        <path d="M 55 25 L 60 15 L 65 25 Z"/>
+                        <rect x="45" y="63" width="30" height="3"/>
+                        <line x1="68" y1="40" x2="78" y2="35"/>
+                        <circle cx="78" cy="35" r="3"/>
+                        <path d="M 130 20 L 130 35 L 120 55 Q 120 60 125 60 L 145 60 Q 150 60 150 55 L 140 35 L 140 20 Z"/>
+                        <line x1="125" y1="20" x2="145" y2="20"/>
+                        <line x1="122" y1="45" x2="148" y2="45" stroke-dasharray="2,2"/>
+                    </g>
+                </svg>
+            </div>
+        </main>
+
+        <footer>
+            <div>A curated scientific digest compiled by Claude</div>
+            <div class="rationale">
+                today's design: field notebook (7 stories on scientific discovery, strong themes of climate research, medical breakthroughs, and astrobiology—warranting a naturalist-researcher aesthetic with specimen labels and laboratory illustration elements)
+            </div>
+        </footer>
     </div>
 
-    <header>
-        <div class="header-content">
-            <div class="logo-row">
-                <h1 class="site-title">news.sys</h1>
-                <span class="attribution">news by Claude</span>
-            </div>
-            <div class="broadcast-info">
-                <div class="status-indicator">
-                    <span class="status-dot alert" aria-hidden="true"></span>
-                    <span>Active monitoring</span>
-                </div>
-                <div class="signal-bars" aria-hidden="true">
-                    <div class="signal-bar"></div>
-                    <div class="signal-bar"></div>
-                    <div class="signal-bar"></div>
-                    <div class="signal-bar"></div>
-                </div>
-                <time class="date-stamp" datetime="2026-01-10">2026.01.10 // SAT</time>
-            </div>
-        </div>
-    </header>
-
-    <main id="main-content">
-        <div class="ascii-divider" aria-hidden="true">◆ ◆ ◆ ◆ ◆</div>
-
-        <div class="news-list" role="list">
-
-            <!-- Item 1 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-1">
-                    <span class="category-tag crisis">CRISIS</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Iran Protests Enter Third Week as Death Toll Surpasses 65</h2>
-                        <p class="headline-blurb">Nationwide internet blackout fails to quell demonstrations; supreme leader calls protesters "bent on destruction"</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-1">
-                    <div class="news-body-inner">
-                        <p class="summary-text">Anti-government protests have spread to more than 100 cities across all Iranian provinces, triggered by crippling economic conditions. Despite authorities severing internet and SMS access, demonstrators have continued taking to the streets. Crowds in Tehran were filmed chanting "freedom" and blocking highways. A doctor reported hospitals are "extremely chaotic" with patients fearful of identification amid the security crackdown. The Islamic Revolutionary Guard Corps has threatened "retaliation."</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">At least 65 killed and over 2,300 arrested according to U.S.-based human rights monitors</div>
-                            <div class="key-point">Communications blackout now in its third day; Starlink devices and border cell signals provide limited outside contact</div>
-                            <div class="key-point">University of Tehran moves classes online; Supreme Leader continues posting on X despite nationwide restrictions</div>
-                            <div class="key-point">European cities hold solidarity protests; Trump administration threatens intervention</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.cnn.com/world/live-news/iran-protests-01-10-26" class="source-link" target="_blank" rel="noopener">CNN Live</a>
-                            <a href="https://www.pbs.org/newshour/show/january-9-2026-pbs-news-hour-full-episode" class="source-link" target="_blank" rel="noopener">PBS NewsHour</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 2 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2">
-                    <span class="category-tag">MEMORIAL</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Los Angeles Marks One Year Since Devastating Wildfires</h2>
-                        <p class="headline-blurb">Recovery remains uneven as thousands await permission to rebuild; no residents have returned to Pacific Palisades</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-2">
-                    <div class="news-body-inner">
-                        <p class="summary-text">California observed a day of remembrance for the January 2025 fires that killed 31 people and destroyed over 16,000 structures across Malibu, Altadena, Pasadena, and Pacific Palisades. Governor Newsom ordered flags at half-staff. One year later, the recovery has been marked by insurance disputes, bureaucratic delays, and difficult decisions. In Pacific Palisades, only one certificate of occupancy has been issued—for a home already under construction before the fire. Survivors describe watching neighbors sell their empty lots while others struggle to determine if they can afford to rebuild.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">Palisades Fire destroyed 6,837 structures; Eaton Fire in Altadena destroyed 9,414</div>
-                            <div class="key-point">933 rebuilding permits issued in Pacific Palisades, but no residents have moved back</div>
-                            <div class="key-point">UCLA report calls for single government authority to coordinate recovery</div>
-                            <div class="key-point">Suspect arrested in October for allegedly starting the fire that rekindled into the Palisades blaze</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.npr.org/2026/01/07/nx-s1-5655224/one-year-los-angeles-fire-survivors-mark-a-somber-milestone" class="source-link" target="_blank" rel="noopener">NPR</a>
-                            <a href="https://lamag.com/news/2025-los-angeles-firestorm-one-year-later-january-2026-l/" class="source-link" target="_blank" rel="noopener">Los Angeles Magazine</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 3 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-3">
-                    <span class="category-tag crisis">CONFLICT</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Venezuela's Maduro in U.S. Custody After Military Operation</h2>
-                        <p class="headline-blurb">Administration says operation was not an act of war; oil companies pledge $100 billion investment</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-3">
-                    <div class="news-body-inner">
-                        <p class="summary-text">President Nicolás Maduro and his wife Cilia Flores were captured by U.S. forces nearly one week ago and brought to face narco-terrorism charges on American soil. The operation, described by the administration as a "large-scale attack," has sparked regional alarm. Colombia's president has announced a visit to Washington seeking to "end the war in Latin America." The Pentagon reports seizing multiple Venezuelan tankers in the Caribbean and Pacific. American oil companies are now pledging at least $100 billion to revive Venezuela's derelict oil infrastructure.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">Pentagon confirms five additional boats destroyed in Caribbean and Pacific, with at least eight killed</div>
-                            <div class="key-point">Administration clarifies it is "not at war" with Venezuela while outlining oil extraction plans</div>
-                            <div class="key-point">Colombian President Gustavo Petro traveling to White House amid regional tensions</div>
-                            <div class="key-point">Oil industry analysts note significant barriers to accessing Venezuela's vast reserves</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.democracynow.org/2026/1/2/headlines" class="source-link" target="_blank" rel="noopener">Democracy Now</a>
-                            <a href="https://www.npr.org/2026/01/09/nx-s1-5672711/the-news-roundup-for-january-9-2026" class="source-link" target="_blank" rel="noopener">NPR 1A</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 4 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-4">
-                    <span class="category-tag crisis">DOMESTIC</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">ICE Shooting in Minneapolis Ignites Protests and Investigations</h2>
-                        <p class="headline-blurb">Minnesota AG launches independent probe; video contradicts federal account of mother's death</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-4">
-                    <div class="news-body-inner">
-                        <p class="summary-text">Renee Good, a 37-year-old American citizen and mother of three, was shot and killed by an ICE agent on Wednesday. Federal authorities claim she attacked officers who were digging their vehicle out of the snow, but video footage from the scene and statements from municipal officials heavily dispute that account. Minnesota Attorney General Keith Ellison has opened an independent investigation. The killing has prompted protests across the city and raised fears in immigrant communities, with Minneapolis Public Schools holding press conferences demanding ICE be kept out of schools.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">Video published by Alpha News and reposted by DHS shows the shooting from the perspective of responding officers</div>
-                            <div class="key-point">Good's wife has spoken publicly; community members describe "terror and chaos"</div>
-                            <div class="key-point">Incident follows separate ICE shooting in Portland, Oregon</div>
-                            <div class="key-point">Schools and community organizations mobilizing to establish "ICE-free zones"</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.pbs.org/newshour/show/january-9-2026-pbs-news-hour-full-episode" class="source-link" target="_blank" rel="noopener">PBS NewsHour</a>
-                            <a href="https://www.npr.org/sections/news" class="source-link" target="_blank" rel="noopener">NPR</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 5 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-5">
-                    <span class="category-tag">INTL</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Greenland Leaders Firmly Reject U.S. Acquisition Push</h2>
-                        <p class="headline-blurb">"We don't want to be Americans, we don't want to be Danes, we want to be Greenlanders"</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-5">
-                    <div class="news-body-inner">
-                        <p class="summary-text">Greenland's Prime Minister and four party leaders issued a joint statement rejecting President Trump's repeated calls for the United States to take control of the island. The autonomous Danish territory, home to roughly 57,000 people, has no military of its own. Trump stated Friday that he would like to acquire Greenland "the easy way," warning that without U.S. ownership, Russia or China could take over. The statement from Greenlandic leaders emphasized that the island's future must be determined by its own people.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">Joint statement represents rare unified response from Greenland's political parties</div>
-                            <div class="key-point">Trump administration says it does not want Russia or China as "neighbors"</div>
-                            <div class="key-point">Unclear how remaining NATO members would respond to potential U.S. action against member Denmark</div>
-                            <div class="key-point">Island holds strategic Arctic position and significant mineral reserves</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.ksat.com/news/world/2026/01/10/greenlands-party-leaders-firmly-reject-trumps-push-for-us-control-of-the-island/" class="source-link" target="_blank" rel="noopener">AP via KSAT</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 6 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-6">
-                    <span class="category-tag">TECH</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">CES 2026: Solid-State Batteries and Factory Robots Arrive</h2>
-                        <p class="headline-blurb">Verge unveils 370-mile motorcycle; Boston Dynamics announces Atlas heading to factories in 2028</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-6">
-                    <div class="news-body-inner">
-                        <p class="summary-text">The annual Consumer Electronics Show in Las Vegas showcased technologies that have long been promised and may finally be arriving. Finnish company Verge announced what it calls the world's first motorcycle with solid-state batteries, promising 370 miles of range and 10-minute charge times. Boston Dynamics revealed its Atlas humanoid robot is transitioning from research project to commercial product, with factory deployments planned for 2028. Other highlights included Motorola's first large-format foldable phone and L'Oréal's flexible LED face mask.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">Solid-state batteries represent potential breakthrough for EV range and charging speed</div>
-                            <div class="key-point">Dell announced return of iconic XPS brand after brief retirement</div>
-                            <div class="key-point">AMD unveiled Ryzen 7 9850X3D and other chips that analysts say could pressure Intel</div>
-                            <div class="key-point">Hisense unveiled three new TV color technologies</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.techradar.com/news/live/ces-2026-live-all-the-latest-news-from-the-worlds-biggest-tech-show" class="source-link" target="_blank" rel="noopener">TechRadar</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 7 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-7">
-                    <span class="category-tag">SCIENCE</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Stanford AI Predicts Disease Risk From Single Night of Sleep</h2>
-                        <p class="headline-blurb">System analyzes brain, heart, and breathing patterns to forecast conditions before symptoms appear</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-7">
-                    <div class="news-body-inner">
-                        <p class="summary-text">Stanford researchers have developed an artificial intelligence system capable of predicting future disease risk using physiological data collected during a single night of sleep. The AI analyzes detailed signals across brain activity, cardiac function, and respiratory patterns, identifying hidden correlations that escape conventional analysis. The system successfully forecast risks for multiple conditions. Researchers say the approach could enable early intervention before diseases manifest clinical symptoms.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">System works with standard sleep study data, potentially enabling wider screening</div>
-                            <div class="key-point">Identifies patterns across multiple physiological systems simultaneously</div>
-                            <div class="key-point">Represents shift toward predictive rather than reactive medicine</div>
-                            <div class="key-point">Researchers note need for validation in broader populations</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.sciencedaily.com/releases/2026/01/260109023114.htm" class="source-link" target="_blank" rel="noopener">ScienceDaily</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 8 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-8">
-                    <span class="category-tag">POLICY</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Federal Government Freezes $10 Billion in Child Care Funds</h2>
-                        <p class="headline-blurb">Five states targeted over fraud allegations; critics warn of harm to low-income families</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-8">
-                    <div class="news-body-inner">
-                        <p class="summary-text">The Department of Health and Human Services has frozen $10 billion in funding to five states—Minnesota, New York, California, Illinois, and Colorado—citing allegations of welfare fraud. The frozen funds cover childcare subsidies, cash support for low-income families, and other social services. The action follows testimony from GOP lawmakers at a hastily scheduled House Oversight Committee hearing focused on fraud allegations in Minnesota. Child care advocates warn the freeze will hurt vulnerable families regardless of the underlying disputes.</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">All five targeted states are led by Democratic governors</div>
-                            <div class="key-point">Funding covers programs serving millions of children and families</div>
-                            <div class="key-point">Critics say fraud allegations remain unproven and freeze is politically motivated</div>
-                            <div class="key-point">Advocates fear extended freeze could force closure of childcare facilities</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.npr.org/2026/01/09/nx-s1-5672711/the-news-roundup-for-january-9-2026" class="source-link" target="_blank" rel="noopener">NPR 1A</a>
-                            <a href="https://www.npr.org/sections/news" class="source-link" target="_blank" rel="noopener">NPR</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 9 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-9">
-                    <span class="category-tag">POLITICS</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">NYC Swears In Zohran Mamdani as First Muslim Mayor</h2>
-                        <p class="headline-blurb">Democratic socialist, 34, makes history as city's youngest mayor in generations</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-9">
-                    <div class="news-body-inner">
-                        <p class="summary-text">Zohran Mamdani has been sworn in as New York City's mayor, becoming the first Muslim, first South Asian, and first African-born person to hold the position. At 34, he is also the youngest mayor in generations. The democratic socialist immediately announced tenant protections and revoked all executive orders signed by former Mayor Eric Adams after his September 2024 federal indictment on bribery charges. In his inaugural remarks, Mamdani declared that "bad landlords have been allowed to mistreat their tenants with impunity. That ends today."</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">Mamdani previously served in New York State Assembly representing Queens</div>
-                            <div class="key-point">Revocation of post-indictment Adams orders signals sharp break with predecessor</div>
-                            <div class="key-point">Tenant protection measures prioritized in first official actions</div>
-                            <div class="key-point">Inauguration drew significant crowds despite winter weather</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.democracynow.org/2026/1/2/headlines" class="source-link" target="_blank" rel="noopener">Democracy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Item 10 -->
-            <article class="news-item" role="listitem">
-                <div class="news-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-10">
-                    <span class="category-tag">SCIENCE</span>
-                    <div class="news-headline">
-                        <h2 class="headline-text">Physicists Narrow Hunt for Universe's Missing 95 Percent</h2>
-                        <p class="headline-blurb">New detectors at near-absolute-zero aim to capture dark matter interactions that may occur once in decades</p>
-                    </div>
-                    <span class="expand-indicator" aria-hidden="true">▸</span>
-                </div>
-                <div class="news-body" id="body-10">
-                    <div class="news-body-inner">
-                        <p class="summary-text">Scientists at Texas A&M are developing semiconductor detectors equipped with cryogenic quantum sensors to search for dark matter, the invisible substance that along with dark energy comprises roughly 95% of the universe. The detectors operate at temperatures near absolute zero to capture interactions so rare they might occur only once in years or decades. Lead researcher Rupak Mahapatra compares humanity's current understanding to "trying to describe an elephant by only touching its tail." Detection of dark matter would open what physicists call "a new chapter in physics."</p>
-                        <div class="key-points">
-                            <div class="key-points-label">Key developments</div>
-                            <div class="key-point">WIMPs (Weakly Interacting Massive Particles) remain leading dark matter candidate</div>
-                            <div class="key-point">Same detector technology could aid nuclear non-proliferation monitoring</div>
-                            <div class="key-point">Research featured in Applied Physics Letters</div>
-                            <div class="key-point">Detection would help explain what shapes galaxies and drives cosmic expansion</div>
-                        </div>
-                        <div class="sources">
-                            <a href="https://www.sciencedaily.com/releases/2026/01/260107225530.htm" class="source-link" target="_blank" rel="noopener">ScienceDaily</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-        </div>
-
-        <div class="ascii-divider" aria-hidden="true">◆ ◆ ◆ ◆ ◆</div>
-    </main>
-
-    <div class="warning-stripe" aria-hidden="true"></div>
-
-    <footer>
-        <p class="design-rationale">
-            <strong>today's design:</strong> emergency broadcast dispatch — dominant news mood is crisis and state action (Iran protests with 65+ dead, Venezuela military operation, domestic law enforcement shootings, $10B funding freeze). The amber-on-dark palette and alert styling reflect a news cycle that reads like a civil defense bulletin. Four crisis stories, two policy/government actions, one memorial, three anchors of science and civic progress.
-        </p>
-    </footer>
-
     <script>
-        // Expand/collapse functionality
-        document.querySelectorAll('.news-header').forEach(header => {
-            header.addEventListener('click', toggleExpand);
-            header.addEventListener('keydown', (e) => {
+        document.querySelectorAll('.specimen-label').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+
+            item.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    toggleExpand.call(header);
+                    this.classList.toggle('expanded');
                 }
+            });
+
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('role', 'button');
+            item.setAttribute('aria-expanded', 'false');
+
+            item.addEventListener('click', function() {
+                const isExpanded = this.classList.contains('expanded');
+                this.setAttribute('aria-expanded', isExpanded);
             });
         });
-
-        function toggleExpand() {
-            const item = this.closest('.news-item');
-            const isExpanded = item.classList.contains('expanded');
-
-            // Close all other items
-            document.querySelectorAll('.news-item.expanded').forEach(openItem => {
-                if (openItem !== item) {
-                    openItem.classList.remove('expanded');
-                    openItem.querySelector('.news-header').setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Toggle this item
-            item.classList.toggle('expanded');
-            this.setAttribute('aria-expanded', !isExpanded);
-        }
-
-        // Update date stamp with local time
-        const dateStamp = document.querySelector('.date-stamp');
-        const now = new Date();
-        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const dayName = days[now.getDay()];
-        // Keep static for this design: dateStamp.textContent = `${year}.${month}.${day} // ${dayName}`;
     </script>
 </body>
 </html>
