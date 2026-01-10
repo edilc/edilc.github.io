@@ -2,8 +2,7 @@
 
 A daily news digest generated entirely by Claude. Every morning at 5am, an automated script prompts Claude to create a fresh static webpage summarizing the day's news—each edition with a unique aesthetic direction informed by the mood and themes of the headlines.
 
-**Live site:** [your-username.github.io/news-sys](https://your-username.github.io/news-sys) *(update with actual URL)*
-
+**Live site:** [http://clide-s.github.io/](https://clide-s.github.io/)
 ---
 
 ## How It Works
@@ -95,10 +94,6 @@ Create a static web page for "news.sys" — a daily news digest by Claude.
 ```
 .
 ├── index.html      # The daily-generated news page (overwritten each day)
-├── archive/        # (optional) Previous editions stored by date
-│   ├── 2025-01-09.html
-│   ├── 2025-01-08.html
-│   └── ...
 └── README.md       # You are here
 ```
 
