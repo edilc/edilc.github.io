@@ -31,6 +31,6 @@ class Config:
 
         return cls(
             anthropic_api_key=api_key,
-            max_searches_per_agent=int(os.environ.get("MAX_SEARCHES", "1")),
+            max_searches_per_agent=int(os.environ.get("MAX_SEARCHES", "3")),
             original_prompt_path=os.environ.get("PROMPT_PATH", "prompt.txt"),
         )
