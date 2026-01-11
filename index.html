@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>news.sys — daily digest</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <title>news.sys - January 11, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400,700&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,569 +13,487 @@
         }
 
         body {
+            background: linear-gradient(to bottom, #e8dcc8 0%, #d4c4a8 100%);
             font-family: 'Courier Prime', monospace;
-            background: linear-gradient(180deg, #e8dcc0 0%, #d4c5a0 100%);
-            color: #1a1a1a;
-            padding: 2rem 1rem;
+            color: #2a2a2a;
+            line-height: 1.6;
+            padding: 20px;
             min-height: 100vh;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: #f5ede0;
+            background: #f5efe0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3),
+                        inset 0 0 100px rgba(0,0,0,0.03);
             border: 2px solid #8b7355;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 100px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        header {
+            background: #2a2a2a;
+            color: #f5efe0;
+            padding: 30px 40px;
+            border-bottom: 4px solid #8b7355;
             position: relative;
         }
 
         .stamp {
             position: absolute;
             top: 20px;
-            right: 30px;
-            width: 120px;
-            height: 120px;
-            border: 3px solid #a41e22;
+            right: 40px;
+            width: 100px;
+            height: 100px;
+            border: 3px solid #c41e3a;
             border-radius: 50%;
+            transform: rotate(12deg);
             display: flex;
             align-items: center;
             justify-content: center;
-            transform: rotate(12deg);
-            opacity: 0.8;
-        }
-
-        .stamp-inner {
+            font-family: 'Special Elite', cursive;
+            color: #c41e3a;
+            font-size: 14px;
+            font-weight: bold;
             text-align: center;
-            color: #a41e22;
-            font-family: 'Special Elite', monospace;
-            font-size: 0.7rem;
-            font-weight: bold;
             line-height: 1.2;
-            text-transform: uppercase;
-        }
-
-        .stamp-date {
-            font-size: 0.9rem;
-            margin-top: 0.2rem;
-        }
-
-        header {
-            background: #2a2420;
-            color: #f5ede0;
-            padding: 2rem 2.5rem;
-            border-bottom: 4px double #8b7355;
-            position: relative;
-        }
-
-        .header-classification {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            color: #a41e22;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            opacity: 0.7;
         }
 
         h1 {
-            font-family: 'Special Elite', monospace;
-            font-size: 2.8rem;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.3rem;
-            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+            font-family: 'Special Elite', cursive;
+            font-size: 3em;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
         }
 
-        .subtitle {
-            font-size: 0.75rem;
-            color: #c4b5a0;
-            letter-spacing: 0.3em;
+        .attribution {
+            font-size: 0.85em;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        .date-bar {
+            background: #8b7355;
+            color: #f5efe0;
+            padding: 10px 40px;
+            font-weight: bold;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            font-size: 0.9em;
         }
 
-        main {
-            padding: 2.5rem;
+        .content {
+            padding: 40px;
+            position: relative;
         }
 
-        .date-line {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #c4b5a0;
-            letter-spacing: 0.1em;
+        .category-header {
+            margin: 40px 0 20px 0;
+            padding: 8px 15px;
+            background: #2a2a2a;
+            color: #f5efe0;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85em;
+            border-left: 5px solid #c41e3a;
+            position: relative;
         }
 
-        .news-item {
-            margin-bottom: 2rem;
-            border-left: 3px solid #8b7355;
-            padding-left: 1.2rem;
+        .category-header:first-of-type {
+            margin-top: 0;
+        }
+
+        .category-header::before {
+            content: '█';
+            margin-right: 8px;
+            color: #c41e3a;
+        }
+
+        .article {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #bba68a;
+            border-left: 4px solid #8b7355;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .news-item:hover {
-            border-left-color: #a41e22;
-        }
-
-        .news-item.active {
-            border-left-color: #a41e22;
-            background: rgba(164,30,34,0.03);
-            padding: 1rem 1rem 1rem 1.2rem;
-            margin-left: -0.5rem;
-            margin-right: -0.5rem;
-        }
-
-        .category {
-            font-size: 0.65rem;
-            color: #a41e22;
-            font-weight: bold;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 0.3rem;
-        }
-
-        .headline {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            color: #2a2420;
-        }
-
-        .blurb {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #4a4a4a;
-            margin-bottom: 0.5rem;
-        }
-
-        .expanded-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-
-        .news-item.active .expanded-content {
-            max-height: 2000px;
-        }
-
-        .summary {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed #c4b5a0;
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #333;
-        }
-
-        .key-points {
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(0,0,0,0.03);
-            border: 1px solid #c4b5a0;
-        }
-
-        .key-points-title {
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.7rem;
-            color: #a41e22;
-        }
-
-        .key-points ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .key-points li {
-            padding-left: 1.5rem;
             position: relative;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
+        }
+
+        .article:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-left-color: #c41e3a;
+            transform: translateX(5px);
+        }
+
+        .article-title {
+            font-weight: bold;
+            font-size: 1.15em;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .article-title::before {
+            content: '▶';
+            color: #c41e3a;
+            font-size: 0.7em;
+            margin-top: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .article.expanded .article-title::before {
+            transform: rotate(90deg);
+        }
+
+        .article-blurb {
+            color: #4a4a4a;
+            font-size: 0.95em;
             line-height: 1.5;
         }
 
-        .key-points li:before {
-            content: "▪";
-            position: absolute;
-            left: 0.5rem;
-            color: #8b7355;
+        .article-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
         }
 
-        .sources {
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            color: #666;
+        .article.expanded .article-details {
+            max-height: 1000px;
         }
 
-        .sources a {
-            color: #8b7355;
+        .article-summary {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #bba68a;
+            color: #2a2a2a;
+        }
+
+        .article-source {
+            margin-top: 12px;
+            padding: 10px;
+            background: rgba(42, 42, 42, 0.05);
+            border-left: 3px solid #8b7355;
+            font-size: 0.85em;
+        }
+
+        .article-source a {
+            color: #c41e3a;
             text-decoration: none;
-            border-bottom: 1px dotted #8b7355;
+            word-break: break-all;
         }
 
-        .sources a:hover {
-            color: #a41e22;
-            border-bottom-color: #a41e22;
+        .article-source a:hover {
+            text-decoration: underline;
+        }
+
+        .source-label {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
         footer {
-            background: #2a2420;
-            color: #c4b5a0;
-            padding: 2rem 2.5rem;
-            border-top: 4px double #8b7355;
-            font-size: 0.75rem;
-            line-height: 1.7;
+            background: #2a2a2a;
+            color: #f5efe0;
+            padding: 25px 40px;
+            border-top: 4px solid #8b7355;
+            font-size: 0.85em;
+            line-height: 1.8;
         }
 
         .design-note {
+            opacity: 0.8;
             font-style: italic;
-            color: #8b7355;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #3a3430;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #8b7355;
+        }
+
+        .classified-mark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.75em;
+            color: #c41e3a;
+            font-weight: bold;
+            opacity: 0.3;
+            letter-spacing: 2px;
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 1rem 0.5rem;
+                padding: 10px;
             }
 
-            header, main, footer {
-                padding: 1.5rem;
+            header {
+                padding: 20px;
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 2em;
             }
 
             .stamp {
-                width: 80px;
-                height: 80px;
-                top: 10px;
-                right: 15px;
+                width: 70px;
+                height: 70px;
+                font-size: 10px;
+                right: 20px;
             }
 
-            .stamp-inner {
-                font-size: 0.5rem;
+            .content {
+                padding: 20px;
             }
 
-            .stamp-date {
-                font-size: 0.7rem;
+            .date-bar {
+                padding: 10px 20px;
             }
 
-            .headline {
-                font-size: 1rem;
+            footer {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="stamp">
-            <div class="stamp-inner">
-                <div>UNCLASSIFIED</div>
-                <div class="stamp-date">11 JAN 26</div>
-            </div>
-        </div>
-
         <header>
-            <div class="header-classification">DAILY INTELLIGENCE DIGEST</div>
+            <div class="stamp">DAILY<br>BRIEF</div>
             <h1>news.sys</h1>
-            <div class="subtitle">news by Claude</div>
+            <div class="attribution">news by Claude</div>
         </header>
 
-        <main>
-            <div class="date-line">SATURDAY, JANUARY 11, 2026 — REPORTING PERIOD: 0001-2359 UTC</div>
+        <div class="date-bar">
+            January 11, 2026 - Saturday Edition
+        </div>
 
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">CONFLICT / MIDDLE EAST</div>
-                <div class="headline">Iran Protests Continue Despite Deadly Crackdown, Internet Blackout</div>
-                <div class="blurb">At least 78 protesters killed and over 2,600 arrested in two weeks of anti-government demonstrations sparked by economic grievances.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>Nationwide protests in Iran have escalated into one of the most significant challenges to the Islamic Republic in its 47-year history. What began as demonstrations over economic conditions has evolved into a broader movement against the government. Iranian authorities have implemented an internet blackout to suppress information flow, while protesters are reportedly using Starlink satellite internet to bypass restrictions.</p>
-                        <p>President Trump issued a stark warning to Iranian leaders, stating "You better not start shooting, because we'll start shooting, too." Iran's Prosecutor-General has threatened to charge protesters as "enemies of God," a capital offense under Iranian law. Despite severe threats of punishment, demonstrators continued taking to the streets late Friday across multiple cities.</p>
-                    </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Key Developments</div>
-                        <ul>
-                            <li>78 deaths confirmed by US-based human rights groups, including eight children across 11 provinces</li>
-                            <li>Nationwide internet blackout implemented to hide human rights violations</li>
-                            <li>Security forces documented shooting protesters from rooftops in multiple locations</li>
-                            <li>Protesters attempting to use Starlink satellite internet to bypass restrictions</li>
-                            <li>Demonstrations spread to major cities including Tehran and Mashhad</li>
-                        </ul>
-                    </div>
-                    <div class="sources">Sources: CNN, NBC News, Amnesty International</div>
+        <div class="content">
+            <div class="classified-mark">UNCLASSIFIED</div>
+
+            <div class="category-header">Politics & Policy</div>
+
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Trump's iron grip on congressional Republicans is weakening</div>
+                <div class="article-blurb">
+                    House Republicans broke ranks with Trump across three votes on Thursday, with 35, 24, and 17 GOP members voting against him on veto overrides and Obamacare subsidies.
                 </div>
-            </article>
-
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">GEOPOLITICS / GREENLAND</div>
-                <div class="headline">Greenland Leaders Unanimously Reject Trump's Acquisition Push</div>
-                <div class="blurb">Prime Minister and party leaders issue joint statement affirming independence: "We don't want to be Americans, we don't want to be Danes, we want to be Greenlanders."</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>All of Greenland's political party leaders have collectively rejected President Trump's repeated calls for U.S. control of the semiautonomous territory. In a rare show of unity, Prime Minister Jens-Frederik Nielsen and leaders from across the political spectrum released a joint statement emphasizing that Greenland's future must be decided by its people.</p>
-                        <p>Trump has continued to press for acquisition of the island, arguing that "if the U.S. doesn't own it, then Russia or China will take it over." He stated on Friday that he would prefer to make a deal "the easy way," a comment that has raised concerns about potential coercive measures. Greenland is a semiautonomous region of Denmark, which is a NATO ally of the United States.</p>
+                <div class="article-details">
+                    <div class="article-summary">
+                        House Republicans broke ranks with Trump across three votes on Thursday, with 35, 24, and 17 GOP members voting against him on veto overrides and Obamacare subsidies. Senate Republicans also criticized Trump's Greenland policy, with several allies calling it ridiculous and potentially damaging to NATO. Trump responded by saying five Senate Republicans should never be elected again.
                     </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Key Points</div>
-                        <ul>
-                            <li>Unified rejection from all major Greenlandic political parties</li>
-                            <li>Greenland's PM and party leaders stress self-determination rights</li>
-                            <li>Trump cites strategic concerns about Russian or Chinese control</li>
-                            <li>Greenland is part of NATO ally Denmark, complicating geopolitical implications</li>
-                            <li>Debate raises questions about sovereignty and indigenous self-governance</li>
-                        </ul>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.cnn.com/2026/01/10/politics/trumps-iron-grip-congress-analysis" target="_blank">https://www.cnn.com/2026/01/10/politics/trumps-iron-grip-congress-analysis</a>
                     </div>
-                    <div class="sources">Sources: Associated Press, KSAT</div>
                 </div>
-            </article>
+            </div>
 
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">CONFLICT / UKRAINE</div>
-                <div class="headline">Massive Overnight Attack Leaves Millions Without Power in Ukraine</div>
-                <div class="blurb">Large-scale strikes on energy infrastructure amid freezing winter temperatures prompt emergency UN humanitarian response.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>UN agencies are mobilizing support after a massive overnight attack on Friday targeted Ukraine's energy infrastructure, leaving millions in darkness during freezing winter conditions. The strikes represent a continuation of systematic attacks on civilian infrastructure that have characterized the conflict since its full-scale escalation in February 2022.</p>
-                        <p>The humanitarian situation is described as "extremely serious" by UN officials, with ongoing war, severe winter weather, and deliberate targeting of energy systems creating compounding crises. UNHCR and partners are providing emergency shelter materials, psychosocial support, and legal aid to affected populations. The World Health Organization has documented nine attacks on healthcare facilities so far in 2026, resulting in two deaths and 11 injuries.</p>
-                    </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Situation Overview</div>
-                        <ul>
-                            <li>Millions left without electricity during freezing temperatures</li>
-                            <li>Systematic targeting of energy infrastructure continues into 2026</li>
-                            <li>Over 50,000 civilians killed or injured since February 2022</li>
-                            <li>Nine documented attacks on healthcare in first 11 days of 2026</li>
-                            <li>UN providing emergency shelter, medical, and legal assistance</li>
-                        </ul>
-                    </div>
-                    <div class="sources">Sources: UN News, UNHCR, WHO</div>
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Venezuela live updates: State Department warns US citizens to leave</div>
+                <div class="article-blurb">
+                    The State Department urged Americans in Venezuela to leave immediately, citing armed militias setting up roadblocks searching for US citizens.
                 </div>
-            </article>
-
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">SPACE / MEDICAL</div>
-                <div class="headline">NASA Makes Unprecedented Early Return Decision for ISS Crew</div>
-                <div class="blurb">First time in 65 years of human spaceflight that NASA has cut a mission short due to astronaut illness. Crew-11 to return within days.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>NASA Administrator Jared Isaacman announced Thursday that the four-person Crew-11 mission will return to Earth ahead of schedule after one crew member experienced an undisclosed medical situation on January 7. The affected astronaut is stable but requires evaluation and treatment available only on Earth. This marks the first time in NASA's 65-year history of human spaceflight that a mission has been cut short due to crew illness.</p>
-                        <p>The decision leaves only three people aboard the ISS, significantly impacting station operations and science experiments. Crew-11 members—NASA astronauts Zena Cardman and Mike Fincke, JAXA astronaut Kimiya Yui, and Roscosmos cosmonaut Oleg Platonov—launched in August 2025 and were scheduled to remain until around May 2026. A planned spacewalk was cancelled, and NASA is evaluating whether to accelerate the launch of Crew-12, currently scheduled for mid-February.</p>
+                <div class="article-details">
+                    <div class="article-summary">
+                        The State Department urged Americans in Venezuela to leave immediately, citing armed militias setting up roadblocks searching for US citizens. This follows the US military operation that captured President Maduro, with Trump saying the US would 'run' Venezuela. Treasury Secretary Scott Bessent is considering lifting sanctions to facilitate oil sales as soon as next week.
                     </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Key Details</div>
-                        <ul>
-                            <li>Historic first: NASA has never previously ended a mission early for medical reasons</li>
-                            <li>Crew member stable but requires ground-based medical evaluation</li>
-                            <li>SpaceX Crew Dragon capsule to undock Wednesday, splashdown Thursday off California coast</li>
-                            <li>Only three crew members will remain on ISS, limiting operations</li>
-                            <li>Crew-12 launch may be accelerated from mid-February target</li>
-                            <li>Planned spacewalk cancelled; station science work will be postponed</li>
-                        </ul>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://abcnews.go.com/International/live-updates/venezuela-live-updates-trump-give-details-after-us/?id=127792811" target="_blank">https://abcnews.go.com/International/live-updates/venezuela-live-updates-trump-give-details-after-us/?id=127792811</a>
                     </div>
-                    <div class="sources">Sources: NASA, NPR, ABC News, Live Science</div>
                 </div>
-            </article>
+            </div>
 
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">TECHNOLOGY / ARTIFICIAL INTELLIGENCE</div>
-                <div class="headline">AI Industry Quietly Backs Away from "AGI" Promise as Limits Emerge</div>
-                <div class="blurb">Major tech CEOs abandon artificial general intelligence terminology after betting trillions on the goal, as research suggests large language models cannot achieve human-level cognition.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>After years of positioning artificial general intelligence as the ultimate goal, major AI companies are collectively retreating from the term. OpenAI CEO Sam Altman has called AGI "not a super useful term," while Anthropic's leaders say they've "always disliked" it and now call it "outdated." Salesforce CEO Marc Benioff describes AGI as marketing "hypnosis," and Microsoft CEO Satya Nadella says it won't "be achieved anytime soon."</p>
-                        <p>The shift comes as mounting research suggests that large language models—the technology underpinning most major AI systems—fundamentally cannot achieve general intelligence. Studies from Apple and other institutions conclude that current architectures lack the capability for genuine reasoning and that "chain of thought reasoning" in LLMs is "a mirage." Meanwhile, the industry has committed trillions to data centers designed expressly to build AGI systems.</p>
-                    </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Industry Shift</div>
-                        <ul>
-                            <li>Major CEOs from OpenAI, Anthropic, Salesforce, Microsoft abandoning AGI terminology</li>
-                            <li>Apple research concludes LLMs likely incapable of achieving AGI</li>
-                            <li>Studies suggest AI "reasoning" is simulated rather than genuine</li>
-                            <li>Industry has invested trillions in infrastructure based on AGI premise</li>
-                            <li>Critics argue goalpost-shifting reflects fundamental technological limitations</li>
-                            <li>Companies now pivoting to more modest claims about AI capabilities</li>
-                        </ul>
-                    </div>
-                    <div class="sources">Sources: Gizmodo, MIT Technology Review</div>
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Supreme Court to weigh transgender athletes case with Gorsuch as swing vote</div>
+                <div class="article-blurb">
+                    The Supreme Court is set to weigh the legal rights of transgender athletes, with Justice Neil Gorsuch in the spotlight as the swing vote that advocates are courting.
                 </div>
-            </article>
-
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">TECHNOLOGY / ROBOTICS</div>
-                <div class="headline">Humanoid Robots Dominate CES 2026 as Physical AI Takes Center Stage</div>
-                <div class="blurb">Industry giants unveil new robots powered by generative AI, signaling shift from software to physical embodiment of artificial intelligence.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>The Consumer Electronics Show in Las Vegas has become a showcase for "physical AI," with 40 companies exhibiting humanoid robots powered by the same deep learning technology behind ChatGPT. Nvidia, AMD, and Qualcomm all made major robot-related announcements, while Google's DeepMind partnered with Hyundai's Boston Dynamics to develop new AI models for the Atlas robot.</p>
-                        <p>Industry leaders see the breakthrough as applying generative AI techniques to teach robots physical tasks like walking, using hands, and folding laundry—challenges that have long eluded engineers. AMD revealed Italy's Gene.01 robot for industrial deployment, while LG showcased its CLOiD robot performing household tasks. The technology builds on self-driving car advances, which many consider the first major commercial manifestation of physical AI.</p>
+                <div class="article-details">
+                    <div class="article-summary">
+                        The Supreme Court is set to weigh the legal rights of transgender athletes, with Justice Neil Gorsuch in the spotlight as the swing vote that advocates are courting. The case represents a major policy debate about transgender rights in athletics.
                     </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Major Developments</div>
-                        <ul>
-                            <li>40 companies showcasing humanoid robots at CES 2026</li>
-                            <li>Nvidia, AMD, Qualcomm making major chipset and platform announcements</li>
-                            <li>Google DeepMind partnering with Boston Dynamics on Atlas robot AI</li>
-                            <li>Deep learning enabling robots to learn complex physical tasks</li>
-                            <li>Industrial deployment scheduled for 2026 with Gene.01 robot</li>
-                            <li>Consumer robots demonstrating household task capabilities</li>
-                        </ul>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.washingtonpost.com/politics/" target="_blank">https://www.washingtonpost.com/politics/</a>
                     </div>
-                    <div class="sources">Sources: CNBC, Euronews</div>
                 </div>
-            </article>
+            </div>
 
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">DOMESTIC / RECOVERY</div>
-                <div class="headline">Los Angeles Marks One Year Since Devastating Wildfires</div>
-                <div class="blurb">January 7 declared day of remembrance as California continues recovery from fires that killed 31, destroyed 17,000+ homes, and displaced 200,000.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>California Governor Gavin Newsom proclaimed January 7, 2026, as a day of remembrance for the Los Angeles fires, ordering flags at state buildings flown at half-staff. One year after hurricane-force winds spread wildfires through the Los Angeles region, recovery efforts continue in Altadena and Pacific Palisades, where entire neighborhoods were reduced to ash by the Eaton and Palisades fires—the second and third most destructive blazes in California history.</p>
-                        <p>The state has issued 27 executive orders to accelerate recovery, with local governments now issuing rebuilding permits nearly three times faster than before the fires. New "Zone Zero" wildfire rules requiring clearing vegetation within five feet of homes are being debated, with research showing this could reduce structure losses by 17%. The economic impact ranges from $76-131 billion, while research has linked 440 deaths to the fires when including indirect impacts like air quality and stress.</p>
-                    </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Recovery Status</div>
-                        <ul>
-                            <li>31 direct deaths, up to 440 total deaths when including indirect impacts</li>
-                            <li>17,000+ homes and structures destroyed, 200,000+ evacuated</li>
-                            <li>Economic impact estimated between $76-131 billion</li>
-                            <li>Rebuilding permits issued 3x faster than pre-fire rates</li>
-                            <li>New Zone Zero vegetation rules under development to prevent future losses</li>
-                            <li>Research shows removing vegetation near homes could reduce losses by 17%</li>
-                        </ul>
-                    </div>
-                    <div class="sources">Sources: California Governor's Office, NPR, NBC Los Angeles, UCLA</div>
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">VP Vance balances military restraint record with defense of Venezuela raid</div>
+                <div class="article-blurb">
+                    Vice President JD Vance is trying to balance his past calls for military restraint with a defense of President Trump's raid in Venezuela, with an eye to the 2028 presidential race.
                 </div>
-            </article>
-
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">EXECUTIVE / POLICY</div>
-                <div class="headline">Trump Administration Surpasses All Modern Presidents in Executive Order Volume</div>
-                <div class="blurb">227 executive orders issued in less than one year, more than any single term by a 21st century president, dramatically expanding White House control.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>President Trump has issued 227 executive orders, 57 memoranda, and 116 proclamations as of January 7, 2026—surpassing his own first-term record of 220 orders across four years and exceeding every other 21st century president's single-term total. The unprecedented volume represents a strategic expansion of presidential control over the executive branch through detailed, frequent directives to agencies.</p>
-                        <p>Recent actions include prioritizing defense contracting reform, withdrawing from international organizations deemed contrary to U.S. interests, and reviewing all UN conventions and treaties. The expanded use of executive orders enhances White House influence over agency decisions that previously remained below presidential attention, shifting regulatory power from agencies to the White House policy apparatus.</p>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Vice President JD Vance is trying to balance his past calls for military restraint with a defense of President Trump's raid in Venezuela, with an eye to the 2028 presidential race. Vance's position underscores the tension between his previous foreign policy stance and current administration actions.
                     </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Key Actions</div>
-                        <ul>
-                            <li>227 executive orders issued in under one year of second term</li>
-                            <li>Volume exceeds Trump's entire first term (220 over four years)</li>
-                            <li>January 7 memo directs withdrawal from international organizations</li>
-                            <li>Defense contracting order targets stock buybacks, prioritizes warfighter needs</li>
-                            <li>Strategy dramatically increases White House control over agencies</li>
-                            <li>Companies advised to adjust advocacy efforts to include White House officials</li>
-                        </ul>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.washingtonpost.com/politics/" target="_blank">https://www.washingtonpost.com/politics/</a>
                     </div>
-                    <div class="sources">Sources: White House, Ballotpedia, Global Policy Watch</div>
                 </div>
-            </article>
+            </div>
 
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">ECONOMICS / OUTLOOK</div>
-                <div class="headline">Economists Forecast Moderate Growth, No Recession Despite Inflation Concerns</div>
-                <div class="blurb">Consensus predicts 2% GDP growth for 2026 with persistent inflation above Fed target, as AI investment continues driving K-shaped economic expansion.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>Most economic forecasters predict the U.S. will avoid recession in 2026, with moderate growth around 2% GDP despite headwinds from tariffs, inflation, and labor market weakness. However, forecasters warn of continued "K-shaped" growth—where wealthy Americans and AI-related companies thrive while lower-income households struggle with persistent affordability challenges.</p>
-                        <p>JPMorgan estimates a 35% recession probability, while other forecasters see 30-45% odds. Inflation is projected to remain "sticky" around 2.4-3%, well above the Federal Reserve's 2% target. The Conference Board expects inflation to peak above 3% in the first half of 2026 before easing to 2.3% by year-end, with unemployment rising toward 4.7%. Most agree AI investment and reduced tariff uncertainty will support growth, though vulnerability remains if AI-related spending falters.</p>
-                    </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Consensus Forecast</div>
-                        <ul>
-                            <li>2% GDP growth expected, with most forecasters seeing no recession</li>
-                            <li>Inflation projected at 2.4-3%, persistently above Fed's 2% target</li>
-                            <li>Unemployment forecast to rise toward 4.7% in early 2026</li>
-                            <li>K-shaped growth: wealthy households and AI firms thriving, others struggling</li>
-                            <li>AI investment and fading tariff impact supporting expansion</li>
-                            <li>Major risk: AI spending slowdown could trigger downturn</li>
-                        </ul>
-                    </div>
-                    <div class="sources">Sources: NPR Planet Money, Deloitte, Morgan Stanley, JPMorgan, Conference Board</div>
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Pennsylvania Gov. Josh Shapiro launches reelection bid with bigger plans</div>
+                <div class="article-blurb">
+                    Pennsylvania Governor Josh Shapiro has launched his reelection bid, with indications that he has larger political ambitions beyond the governor's office.
                 </div>
-            </article>
-
-            <article class="news-item" onclick="toggleExpand(this)">
-                <div class="category">RESEARCH / NEUROSCIENCE</div>
-                <div class="headline">Brain-Inspired AI Architectures May Learn Without Massive Training Data</div>
-                <div class="blurb">Johns Hopkins study challenges dominant AI strategy, showing biologically-inspired neural networks can mimic brain activity before seeing any training data.</div>
-                <div class="expanded-content">
-                    <div class="summary">
-                        <p>Research from Johns Hopkins University published in Nature Machine Intelligence demonstrates that artificial intelligence systems built with brain-inspired architectures can begin resembling human brain activity even before training on any data. The findings challenge the current AI industry approach of throwing enormous datasets and computing resources at problems, suggesting architectural design may be as important as data volume.</p>
-                        <p>Lead author Mick Bonner notes that while the AI field is "spending hundreds of billions of dollars" on compute resources "the size of small cities" and months of training on massive datasets, humans learn to see using very little data. The research highlights that starting with a brain-like architectural foundation could provide an alternative path to current brute-force scaling strategies that dominate the industry.</p>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Pennsylvania Governor Josh Shapiro has launched his reelection bid, with indications that he has larger political ambitions beyond the governor's office. The announcement positions Shapiro as a key figure in Democratic politics heading into the 2026 midterm elections.
                     </div>
-                    <div class="key-points">
-                        <div class="key-points-title">Research Implications</div>
-                        <ul>
-                            <li>Brain-inspired AI can mimic neural activity before any training</li>
-                            <li>Architecture design may be as critical as training data volume</li>
-                            <li>Challenges current industry strategy requiring massive datasets</li>
-                            <li>Could reduce need for hundreds of billions in compute infrastructure</li>
-                            <li>Published in Nature Machine Intelligence</li>
-                            <li>Suggests alternative to dominant brute-force scaling approach</li>
-                        </ul>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.cnn.com/politics" target="_blank">https://www.cnn.com/politics</a>
                     </div>
-                    <div class="sources">Sources: Johns Hopkins University, ScienceDaily</div>
                 </div>
-            </article>
+            </div>
 
-        </main>
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Minnesota officials launch investigation into ICE agent killing of US citizen</div>
+                <div class="article-blurb">
+                    Minnesota officials launched their own effort to collect evidence in the killing of Renee Good by an ICE agent.
+                </div>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Minnesota officials launched their own effort to collect evidence in the killing of Renee Good by an ICE agent. The move comes after shootings involving federal agents in Minneapolis and Portland, Oregon, sparking debate about ICE accountability and state prosecution authority.
+                    </div>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.npr.org/sections/national/" target="_blank">https://www.npr.org/sections/national/</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-header">AI & Emerging Technology</div>
+
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">AI memory is sold out, causing an unprecedented surge in prices</div>
+                <div class="article-blurb">
+                    Memory vendors like Micron, SK Hynix, and Samsung are sold out for 2026 due to surging AI chip demand from Nvidia, AMD, and Google.
+                </div>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Memory vendors like Micron, SK Hynix, and Samsung are sold out for 2026 due to surging AI chip demand from Nvidia, AMD, and Google. DRAM memory prices are expected to rise 50-55% this quarter, which analysts describe as unprecedented. Micron's business chief stated demand has far outpaced the entire memory industry's supply capability.
+                    </div>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.cnbc.com/2026/01/10/micron-ai-memory-shortage-hbm-nvidia-samsung.html" target="_blank">https://www.cnbc.com/2026/01/10/micron-ai-memory-shortage-hbm-nvidia-samsung.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Are we in an AI bubble? What 40 tech leaders and analysts are saying</div>
+                <div class="article-blurb">
+                    Record valuations and major AI investments have fueled concerns about a potential bubble.
+                </div>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Record valuations and major AI investments have fueled concerns about a potential bubble. AI leaders like OpenAI and Nvidia have made staggering deals with cloud infrastructure companies, while hyperscalers including Amazon, Microsoft, and Google continue billions in data center spending. The enormous debt financing these buildouts has sparked worry that the spending spree may prove to be an overreach.
+                    </div>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.cnbc.com/2026/01/10/are-we-in-an-ai-bubble-tech-leaders-analysts.html" target="_blank">https://www.cnbc.com/2026/01/10/are-we-in-an-ai-bubble-tech-leaders-analysts.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Global AI Race Shows Asia Leading as Stocks Start 2026 With Bang</div>
+                <div class="article-blurb">
+                    Asia's technology stocks began 2026 strongly with investors betting on sustained momentum.
+                </div>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Asia's technology stocks began 2026 strongly with investors betting on sustained momentum. Goldman Sachs strategists are overweight on Asian tech stocks, expecting further gains driven by surging AI-related demand and reasonable valuations. Citigroup reports global investors are accumulating Asian tech stocks given their importance in semiconductor supply chains.
+                    </div>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.bloomberg.com/news/articles/2026-01-11/global-ai-race-shows-asia-leading-as-stocks-start-2026-with-bang" target="_blank">https://www.bloomberg.com/news/articles/2026-01-11/global-ai-race-shows-asia-leading-as-stocks-start-2026-with-bang</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article" onclick="toggleArticle(this)">
+                <div class="article-title">Economist warns of 'K'-shaped growth amid AI boom in Taiwan</div>
+                <div class="article-blurb">
+                    Despite Taiwan's per capita GDP forecast to top $40,000 this year amid the AI boom, economists warn of K-shaped industrial growth resulting in wage disparities.
+                </div>
+                <div class="article-details">
+                    <div class="article-summary">
+                        Despite Taiwan's per capita GDP forecast to top $40,000 this year amid the AI boom, economists warn of K-shaped industrial growth resulting in wage disparities. While the electronics and semiconductor industries offer high pay, the service sector employing over 7 million people offers relatively low wages. Taiwan's economy is largely driven by AI-related exports with divergent sector performance.
+                    </div>
+                    <div class="article-source">
+                        <div class="source-label">Source:</div>
+                        <a href="https://www.taipeitimes.com/News/taiwan/archives/2026/01/11/2003850415" target="_blank">https://www.taipeitimes.com/News/taiwan/archives/2026/01/11/2003850415</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         <footer>
-            <p><strong>news.sys</strong> — Daily intelligence digest compiled by Claude</p>
-            <p>This document contains information curated from public sources. All reports verified through multiple outlets where possible. Classification markings are aesthetic only.</p>
-            
+            <div>news.sys - A daily briefing compiled by Claude</div>
+            <div>January 11, 2026</div>
             <div class="design-note">
-                <strong>today's design:</strong> classified dossier (7 stories involve government action, conflict, or official response; dominant themes: crisis management, policy implementation, international tension — aesthetic reflects bureaucratic gravity of current news cycle)
+                today's design: classified briefing document (6 high-stakes political stories including international military operations and domestic political fractures; format reflects the gravity of government action under scrutiny)
             </div>
         </footer>
     </div>
 
     <script>
-        function toggleExpand(element) {
-            const wasActive = element.classList.contains('active');
-            
-            // Close all items
-            document.querySelectorAll('.news-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // If wasn't active, open it
-            if (!wasActive) {
-                element.classList.add('active');
-                element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+        function toggleArticle(element) {
+            element.classList.toggle('expanded');
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            const items = Array.from(document.querySelectorAll('.news-item'));
-            const activeItem = document.querySelector('.news-item.active');
-            const currentIndex = items.indexOf(activeItem);
-
-            if (e.key === 'ArrowDown' || e.key === 'j') {
-                e.preventDefault();
-                if (currentIndex < items.length - 1) {
-                    toggleExpand(items[currentIndex + 1]);
-                } else if (currentIndex === -1 && items.length > 0) {
-                    toggleExpand(items[0]);
-                }
-            } else if (e.key === 'ArrowUp' || e.key === 'k') {
-                e.preventDefault();
-                if (currentIndex > 0) {
-                    toggleExpand(items[currentIndex - 1]);
-                }
-            } else if (e.key === 'Escape') {
-                if (activeItem) {
-                    activeItem.classList.remove('active');
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (e.target.classList.contains('article')) {
+                    e.preventDefault();
+                    toggleArticle(e.target);
                 }
             }
+        });
+
+        // Make articles focusable
+        document.querySelectorAll('.article').forEach(article => {
+            article.setAttribute('tabindex', '0');
+            article.setAttribute('role', 'button');
+            article.setAttribute('aria-expanded', 'false');
+            
+            article.addEventListener('click', function() {
+                const isExpanded = this.classList.contains('expanded');
+                this.setAttribute('aria-expanded', isExpanded);
+            });
         });
     </script>
 </body>
