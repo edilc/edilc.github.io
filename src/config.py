@@ -12,7 +12,7 @@ class Config:
     anthropic_api_key: str
 
     # Agent settings
-    max_searches_per_agent: int = 5
+    max_searches_per_agent: int = 2
 
     # File paths
     original_prompt_path: str = "prompt.txt"
@@ -31,6 +31,6 @@ class Config:
 
         return cls(
             anthropic_api_key=api_key,
-            max_searches_per_agent=int(os.environ.get("MAX_SEARCHES", "3")),
+            max_searches_per_agent=int(os.environ.get("MAX_SEARCHES", "2")),
             original_prompt_path=os.environ.get("PROMPT_PATH", "prompt.txt"),
         )
