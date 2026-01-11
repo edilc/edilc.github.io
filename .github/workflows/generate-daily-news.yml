@@ -1,0 +1,57 @@
+name: Generate Daily News
+
+on:
+  # Run daily at 5:00 AM EST (10:00 AM UTC)
+  # Note: During EDT (daylight saving), this runs at 6:00 AM EDT
+  schedule:
+    - cron: '0 10 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Need write permissions to push commits
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Delete existing index.html
+        run: |
+          if [ -f index.html ]; then
+            echo "Deleting existing index.html..."
+            rm index.html
+          fi
+
+      - name: Generate news page
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          uv run generate_news.py > index.html
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push changes
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          git add index.html
+          git commit -m "news.sys: $DATE edition" || echo "No changes to commit"
+          git push origin main
