@@ -15,155 +15,177 @@
         }
 
         body {
-            background: linear-gradient(180deg, #2a2520 0%, #1a1512 100%);
-            color: #e8d7c3;
+            background: linear-gradient(to bottom, #2a1a1a 0%, #1a1212 100%);
+            color: #ff3333;
             font-family: 'Courier Prime', monospace;
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
-        }
-
-        .page-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #1e1a16;
-            border: 3px solid #5a4a3a;
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 100px rgba(0, 0, 0, 0.3);
             position: relative;
         }
 
-        .page-container::before {
+        body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
+            width: 100%;
+            height: 100%;
             background: 
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 51, 51, 0.03) 0px,
+                    transparent 1px,
+                    transparent 2px,
+                    rgba(255, 51, 51, 0.03) 3px
+                );
             pointer-events: none;
             z-index: 1;
         }
 
-        .content-wrapper {
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             position: relative;
             z-index: 2;
-            padding: 40px;
         }
 
         header {
-            border-bottom: 4px double #8b6f47;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
             text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            border: 3px double #ff3333;
+            background: rgba(42, 26, 26, 0.8);
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
         }
 
-        .stamp-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .stamp {
-            border: 3px solid #c41e3a;
-            color: #c41e3a;
-            padding: 8px 16px;
-            font-family: 'Special Elite', monospace;
-            font-size: 11px;
-            letter-spacing: 3px;
-            transform: rotate(-3deg);
+        .alert-banner {
+            background: #ff3333;
+            color: #000;
+            padding: 8px;
             font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            animation: pulse 2s infinite;
         }
 
-        .stamp.right {
-            transform: rotate(2deg);
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         h1 {
             font-family: 'Special Elite', monospace;
-            font-size: 48px;
-            color: #d4af37;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 3.5em;
+            color: #ff3333;
+            text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
         }
 
-        .attribution {
-            font-size: 12px;
-            color: #8b7355;
+        .subtitle {
+            font-size: 0.9em;
+            color: #ff6666;
             letter-spacing: 2px;
+            margin-bottom: 5px;
         }
 
-        .classification-bar {
-            background: #c41e3a;
-            color: #fff;
-            text-align: center;
-            padding: 8px;
-            font-size: 11px;
+        .date {
+            color: #cc4444;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .threat-level {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 0.75em;
+        }
+
+        .threat-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .threat-box {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #ff3333;
+            background: #ff3333;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255, 51, 51, 0.1);
+            border-left: 4px solid #ff3333;
+        }
+
+        .category-icon {
+            font-size: 1.2em;
+        }
+
+        .category-title {
+            font-size: 1.1em;
             font-weight: bold;
-            letter-spacing: 4px;
-            margin: 30px -40px 30px -40px;
-            border-top: 2px solid #fff;
-            border-bottom: 2px solid #fff;
-        }
-
-        .articles-grid {
-            display: grid;
-            gap: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .article {
-            background: rgba(42, 37, 32, 0.5);
-            border: 1px solid #5a4a3a;
-            border-left: 4px solid #8b6f47;
+            background: rgba(26, 18, 18, 0.6);
+            border: 2px solid #ff3333;
+            margin-bottom: 20px;
             padding: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
         }
 
+        .article::before {
+            content: '▶';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            color: #ff3333;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        .article.expanded::before {
+            transform: rotate(90deg);
+        }
+
         .article:hover {
-            background: rgba(42, 37, 32, 0.8);
-            border-left-color: #d4af37;
-        }
-
-        .article.expanded {
-            border-left-color: #d4af37;
-            background: rgba(42, 37, 32, 0.9);
-        }
-
-        .article-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 15px;
+            background: rgba(26, 18, 18, 0.9);
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
+            border-color: #ff6666;
         }
 
         .article-title {
-            font-size: 16px;
             font-weight: bold;
-            color: #d4af37;
-            margin-bottom: 8px;
-            flex: 1;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            color: #ff5555;
         }
 
-        .category-tag {
-            font-size: 9px;
-            background: #5a4a3a;
-            color: #e8d7c3;
-            padding: 4px 8px;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            font-weight: bold;
-        }
-
-        .article-brief {
-            color: #b8a898;
-            font-size: 14px;
+        .article-preview {
+            color: #cc4444;
+            font-size: 0.9em;
+            padding-left: 20px;
             line-height: 1.5;
         }
 
@@ -171,324 +193,319 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease;
+            padding-left: 20px;
         }
 
         .article.expanded .article-details {
-            max-height: 2000px;
+            max-height: 1000px;
+            margin-top: 15px;
         }
 
         .article-summary {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #5a4a3a;
-            color: #c9b899;
-            font-size: 14px;
+            color: #ff6666;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 51, 51, 0.05);
+            border-left: 3px solid #ff3333;
         }
 
         .article-source {
-            margin-top: 12px;
+            font-size: 0.85em;
+            color: #cc4444;
+            margin-top: 10px;
             padding: 10px;
             background: rgba(0, 0, 0, 0.3);
-            border-left: 2px solid #8b6f47;
+            border: 1px solid #ff3333;
         }
 
         .article-source a {
-            color: #8b9dc3;
+            color: #ff5555;
             text-decoration: none;
-            font-size: 12px;
             word-break: break-all;
         }
 
         .article-source a:hover {
-            color: #adbbd4;
+            color: #ff8888;
             text-decoration: underline;
         }
 
-        .expand-indicator {
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
-            color: #8b6f47;
-            font-size: 11px;
+        .classification {
+            display: inline-block;
+            font-size: 0.7em;
+            padding: 3px 8px;
+            border: 1px solid #ff3333;
+            background: rgba(255, 51, 51, 0.2);
+            margin-left: 10px;
             letter-spacing: 1px;
         }
 
-        .article.expanded .expand-indicator::after {
-            content: ' ▲';
-        }
-
-        .article:not(.expanded) .expand-indicator::after {
-            content: ' ▼';
-        }
-
         footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #5a4a3a;
             text-align: center;
-            font-size: 11px;
-            color: #8b7355;
+            margin-top: 60px;
+            padding: 30px;
+            border-top: 2px solid #ff3333;
+            color: #cc4444;
+            font-size: 0.85em;
         }
 
         .design-note {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #aa3333;
             font-style: italic;
-            margin-top: 10px;
-            color: #6a5a4a;
         }
 
-        .redacted-line {
-            display: inline-block;
-            background: #1a1512;
-            color: transparent;
-            padding: 2px 30px;
-            margin: 0 5px;
+        .ascii-divider {
+            text-align: center;
+            color: #ff3333;
+            margin: 30px 0;
+            font-size: 0.8em;
+            opacity: 0.5;
         }
 
         @media (max-width: 768px) {
-            .content-wrapper {
-                padding: 20px;
-            }
-
             h1 {
-                font-size: 32px;
+                font-size: 2em;
+                letter-spacing: 3px;
             }
 
-            .classification-bar {
-                margin: 20px -20px;
-            }
-
-            .stamp-container {
+            .threat-level {
                 flex-direction: column;
-                align-items: center;
-                gap: 10px;
+                gap: 8px;
             }
 
-            .stamp {
-                transform: rotate(0deg) !important;
+            .article-title {
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <div class="content-wrapper">
-            <header>
-                <div class="stamp-container">
-                    <div class="stamp">CLASSIFIED</div>
-                    <div class="stamp right">01.12.2026</div>
+    <div class="container">
+        <header>
+            <div class="alert-banner">⚠ PRIORITY BRIEFING ⚠</div>
+            <h1>NEWS.SYS</h1>
+            <div class="subtitle">INTELLIGENCE DIGEST / NEWS BY CLAUDE</div>
+            <div class="date">JANUARY 12, 2026 / 00:00 HRS</div>
+            <div class="threat-level">
+                <div class="threat-indicator">
+                    <div class="threat-box"></div>
+                    <span>WORLD AFFAIRS: HIGH</span>
                 </div>
-                <h1>news.sys</h1>
-                <div class="attribution">news by Claude</div>
-            </header>
-
-            <div class="classification-bar">
-                DAILY INTELLIGENCE BRIEFING - SECTION 10
+                <div class="threat-indicator">
+                    <div class="threat-box"></div>
+                    <span>DOMESTIC: ELEVATED</span>
+                </div>
+                <div class="threat-indicator">
+                    <div class="threat-box"></div>
+                    <span>LEGAL: ACTIVE</span>
+                </div>
             </div>
+        </header>
 
-            <div class="articles-grid">
+        <main>
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">🌍</span>
+                    <span class="category-title">World Affairs</span>
+                    <span class="classification">CRITICAL</span>
+                </div>
+
                 <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">US Opens Criminal Investigation Into Fed Chair Jerome Powell</div>
-                        <div class="category-tag">politics</div>
-                    </div>
-                    <div class="article-brief">
-                        Highly unusual development as executive branch targets independent Federal Reserve leadership.
-                    </div>
+                    <h2 class="article-title">US Forces Capture Venezuelan Leader Nicolas Maduro After Large Scale Strike</h2>
+                    <p class="article-preview">US forces captured Venezuelan leader Nicolas Maduro following a large-scale military strike on Venezuela...</p>
                     <div class="article-details">
                         <div class="article-summary">
-                            The United States has opened a criminal investigation into Federal Reserve Chair Jerome Powell, according to Euronews reporting. This represents a highly unusual development in the relationship between the executive branch and the independent Federal Reserve.
+                            US forces captured Venezuelan leader Nicolas Maduro following a large-scale military strike on Venezuela. The capture has sparked both celebration and caution among Venezuela's diaspora in Chile, with questions growing about what this means for the country and those who fled.
                         </div>
                         <div class="article-source">
-                            SOURCE: <a href="https://www.euronews.com/video/2026/01/12/latest-news-bulletin-january-12th-2026-morning" target="_blank">https://www.euronews.com/video/2026/01/12/latest-news-bulletin-january-12th-2026-morning</a>
+                            SOURCE: <a href="https://www.npr.org/sections/news/" target="_blank">https://www.npr.org/sections/news/</a>
                         </div>
                     </div>
-                    <div class="expand-indicator">DETAILS</div>
                 </article>
 
                 <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">Stock futures and dollar fall as Trump-Fed tensions escalate over grand jury subpoenas</div>
-                        <div class="category-tag">markets</div>
-                    </div>
-                    <div class="article-brief">
-                        Markets retreat from US assets as Powell reveals grand jury subpoenas over Fed headquarters renovations.
-                    </div>
+                    <h2 class="article-title">Iran Parliament Speaker Warns of Retaliation as Protests Continue</h2>
+                    <p class="article-preview">Iran's parliament speaker warned that U.S. military and Israel would be legitimate targets if America strikes...</p>
                     <div class="article-details">
                         <div class="article-summary">
-                            Stock futures slipped 0.8% and the dollar fell as investors retreated from US assets following escalating tensions between the Trump administration and the Federal Reserve. Fed Chair Jerome Powell revealed the Fed had been served grand jury subpoenas over headquarters renovations, which he attributed to policymakers' reluctance to follow Trump's preferences on interest rates. Gold hit a new high amid the uncertainty.
+                            Iran's parliament speaker warned that U.S. military and Israel would be legitimate targets if America strikes the Islamic Republic, as threatened by President Trump. This comes as nationwide protests challenging Iran's theocracy have resulted in at least 116 deaths, with the country cut off from the rest of the world.
                         </div>
                         <div class="article-source">
-                            SOURCE: <a href="https://www.bloomberg.com/news/articles/2026-01-11/asian-stocks-set-to-track-us-gains-oil-in-focus-markets-wrap" target="_blank">https://www.bloomberg.com/news/articles/2026-01-11/asian-stocks-set-to-track-us-gains-oil-in-focus-markets-wrap</a>
+                            SOURCE: <a href="https://www.npr.org/sections/news/" target="_blank">https://www.npr.org/sections/news/</a>
                         </div>
                     </div>
-                    <div class="expand-indicator">DETAILS</div>
                 </article>
 
                 <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">Supreme Court Hears First 2026 Arguments: Chevron v. Plaquemines Parish</div>
-                        <div class="category-tag">legal</div>
-                    </div>
-                    <div class="article-brief">
-                        Case examines energy company liability for coastal wetland degradation; $744 million verdict at stake.
-                    </div>
+                    <h2 class="article-title">Israel Bars Doctors Without Borders and Other Aid Groups from Gaza and West Bank</h2>
+                    <p class="article-preview">A recent Israeli decision means that Doctors Without Borders and other international aid organizations can no longer send international staff...</p>
                     <div class="article-details">
                         <div class="article-summary">
-                            The Supreme Court opened its January 2026 calendar on Monday, January 12, with oral arguments in Chevron USA Inc. v. Plaquemines Parish, a case examining whether energy companies sued by Louisiana parishes over decades-old oil-and-gas activity may remove cases to federal court. A Plaquemines Parish jury ordered Chevron to pay $744 million in damages for its role in the degradation of the state's coastal wetlands.
+                            A recent Israeli decision means that Doctors Without Borders and other international aid organizations can no longer send international staff or aid into Gaza or the West Bank. This represents a significant escalation in restrictions on humanitarian access to the Palestinian territories.
                         </div>
                         <div class="article-source">
-                            SOURCE: <a href="https://www.supremecourt.gov/oral_arguments/argument_calendars/MonthlyArgumentCalJanuary2026.pdf" target="_blank">https://www.supremecourt.gov/oral_arguments/argument_calendars/MonthlyArgumentCalJanuary2026.pdf</a>
+                            SOURCE: <a href="https://www.npr.org/sections/news/" target="_blank">https://www.npr.org/sections/news/</a>
                         </div>
                     </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">ISS astronaut medical evacuation: Crew-11 Dragon to splashdown Jan. 15</div>
-                        <div class="category-tag">space</div>
-                    </div>
-                    <div class="article-brief">
-                        First US/ISS mission cut short for medical reasons; controlled evacuation underway.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            NASA is conducting a controlled medical evacuation of the SpaceX Crew-11 mission from the ISS due to a medical concern with one crew member. The Dragon capsule will splashdown in the Pacific on January 15, marking the first time in U.S. and ISS history that a space mission has been cut short due to a medical issue.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.space.com/live/astronaut-medical-evacuation-on-iss-jan-11-2026" target="_blank">https://www.space.com/live/astronaut-medical-evacuation-on-iss-jan-11-2026</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">China's 'artificial sun' breaks fusion density limit in major breakthrough</div>
-                        <div class="category-tag">science</div>
-                    </div>
-                    <div class="article-brief">
-                        EAST tokamak achieves 'density-free regime,' removing major obstacle to fusion ignition.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            Scientists working with China's EAST tokamak successfully reached a 'density-free regime' where plasma remains stable even at densities far beyond traditional limits. The experiment, published in Science Advances on January 1, removes a major obstacle to fusion ignition by demonstrating that plasma-wall interactions can be controlled to prevent disruptive instabilities.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.sciencedaily.com/releases/2026/01/260101160855.htm" target="_blank">https://www.sciencedaily.com/releases/2026/01/260101160855.htm</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">Fentanyl Vaccine Enters Human Clinical Trials in Early 2026</div>
-                        <div class="category-tag">medical</div>
-                    </div>
-                    <div class="article-brief">
-                        First-ever overdose prevention vaccine begins human trials; blocks fentanyl from reaching brain.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            The first-ever fentanyl overdose prevention vaccine begins human trials in early 2026 at the University of Leiden in the Netherlands. The vaccine blocks fentanyl from entering the brain and showed positive results in mouse and rat studies, potentially preventing thousands of overdose deaths annually.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.foxnews.com/health/experimental-vaccine-could-save-thousands-lives-per-year-scientist-claims" target="_blank">https://www.foxnews.com/health/experimental-vaccine-could-save-thousands-lives-per-year-scientist-claims</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">KAIST Researchers Reprogram Tumor-Resident Immune Cells Into Cancer Killers</div>
-                        <div class="category-tag">medical</div>
-                    </div>
-                    <div class="article-brief">
-                        Injectable drug converts macrophages inside tumors into cancer-attacking agents.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            KAIST researchers developed a drug injected directly into tumors that reprograms macrophages already inside tumors into cancer-killing machines. The drug is absorbed by macrophages, prompting them to recognize and attack cancer cells while potentially transforming immunotherapy approaches.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.sciencedaily.com/news/" target="_blank">https://www.sciencedaily.com/news/</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">IRENA Assembly Charts Bold Energy Transition Agenda for 2026</div>
-                        <div class="category-tag">climate</div>
-                    </div>
-                    <div class="article-brief">
-                        First international energy meeting of 2026 focuses on tripling renewable capacity by 2030.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            The 16th International Renewable Energy Agency (IRENA) Assembly convenes from January 10-12, 2026 in Abu Dhabi, marking the first international energy meeting of the year. The assembly is setting a bold agenda for the energy transition in 2026 with ministers and officials gathering to discuss progress toward the COP28 goal of tripling renewable energy capacity by 2030.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.irena.org/" target="_blank">https://www.irena.org/</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">Oklahoma City Thunder Beat Miami Heat 124-112, Improve to NBA-Best 33-7 Record</div>
-                        <div class="category-tag">sports</div>
-                    </div>
-                    <div class="article-brief">
-                        Gilgeous-Alexander's 29 points lead Thunder to third straight win and league's best record.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            Shai Gilgeous-Alexander delivered 29 points, eight assists and five rebounds as the Thunder earned their third straight victory. Oklahoma City outscored Miami 70-53 over the final two quarters to turn a close contest into a controlled win, improving to the league's best record while the Heat dropped to 20-19.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.mykhel.com/more-sports/nba-recap-timberwolves-thunder-knicks-january-12-2026-011-406494.html" target="_blank">https://www.mykhel.com/more-sports/nba-recap-timberwolves-thunder-knicks-january-12-2026-011-406494.html</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
-                </article>
-
-                <article class="article" onclick="toggleArticle(this)">
-                    <div class="article-header">
-                        <div class="article-title">Timothée Chalamet Wins Golden Globe for 'Marty Supreme,' Shares Kiss with Kylie Jenner</div>
-                        <div class="category-tag">entertainment</div>
-                    </div>
-                    <div class="article-brief">
-                        Actor takes home best actor award in musical/comedy category at 2026 Golden Globes.
-                    </div>
-                    <div class="article-details">
-                        <div class="article-summary">
-                            Timothée Chalamet took home the Golden Globe award for best actor in a musical or comedy for his performance in 'Marty Supreme' at the 2026 Golden Globes on January 11. The couple made headlines when they were spotted kissing during a commercial break, with Kylie Jenner attending to support her boyfriend.
-                        </div>
-                        <div class="article-source">
-                            SOURCE: <a href="https://www.tmz.com/" target="_blank">https://www.tmz.com/</a>
-                        </div>
-                    </div>
-                    <div class="expand-indicator">DETAILS</div>
                 </article>
             </div>
 
-            <footer>
-                <div>news.sys :: compiled January 12, 2026 :: <span class="redacted-line">REDACTED</span> :: distribution level ECHO</div>
-                <div class="design-note">
-                    today's design: classified dossier (executive-fed tensions, grand jury subpoenas, institutional crisis)
+            <div class="ascii-divider">╔═══════════════════════════════════════════════════════════╗</div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">🏛️</span>
+                    <span class="category-title">Politics & Policy</span>
+                    <span class="classification">ELEVATED</span>
                 </div>
-            </footer>
-        </div>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Homeland Security Secretary Issues New Rules for Congressional ICE Facility Visits</h2>
+                    <p class="article-preview">A memo from Homeland Security Secretary Kristi Noem instructs staff that congressional visits to ICE facilities should be requested...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            A memo from Homeland Security Secretary Kristi Noem instructs staff that congressional visits to ICE facilities should be requested at least seven days in advance. This comes after Democratic congresswomen, including Rep. Ilhan Omar, were initially granted access to an ICE facility in Minneapolis but were quickly asked to leave.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://www.npr.org/sections/news/" target="_blank">https://www.npr.org/sections/news/</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Secret Service Finds Suspicious Object Near Palm Beach International Airport</h2>
+                    <p class="article-preview">The Secret Service discovered a suspicious object near Palm Beach International Airport before the President was set to depart...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            The Secret Service discovered a suspicious object near Palm Beach International Airport before the President was set to depart on Air Force One. Details about the nature of the object and any security impacts remain limited.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://www.wpbf.com/article/news-to-go-january-12-2026/69975317" target="_blank">https://www.wpbf.com/article/news-to-go-january-12-2026/69975317</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="ascii-divider">╔═══════════════════════════════════════════════════════════╗</div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">⚖️</span>
+                    <span class="category-title">Legal & Courts</span>
+                    <span class="classification">ACTIVE</span>
+                </div>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Ninth Circuit Affirms Constitutional Protection of Open Carry in Baird v. Bonta</h2>
+                    <p class="article-preview">The Ninth Circuit Court of Appeals filed a decision on January 2, 2026, in Baird v. Bonta, addressing California's urban open-carry ban...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            The Ninth Circuit Court of Appeals filed a decision on January 2, 2026, in Baird v. Bonta, addressing California's urban open-carry ban under the Second Amendment. The panel held that California's restrictions prohibit open carry in areas where 95% of Californians live. The court found historical consensus that open carry was protected both in 1791 and 1868, making this case similar to the Supreme Court's Bruen decision.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://cdn.ca9.uscourts.gov/datastore/opinions/2026/01/02/24-565.pdf" target="_blank">https://cdn.ca9.uscourts.gov/datastore/opinions/2026/01/02/24-565.pdf</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Supreme Court to Hear Arguments on Transgender Athlete Participation in Women's Sports on January 13</h2>
+                    <p class="article-preview">The Supreme Court is scheduled to hear arguments on January 13, 2026, in two cases concerning the extent to which gender identity...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            The Supreme Court is scheduled to hear arguments on January 13, 2026, in two cases (Little v. Hecox and West Virginia v. B.P.J.) concerning the extent to which gender identity and biological assignment at birth can be considered as factors in scholastic sports competitions. These cases mark the first time the legality of laws restricting participation in women's sports by biological sex makes its way to the high court.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://constitutioncenter.org/blog/presidential-powers-transgender-rights-among-upcoming-supreme-court-arguments" target="_blank">https://constitutioncenter.org/blog/presidential-powers-transgender-rights-among-upcoming-supreme-court-arguments</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="ascii-divider">╔═══════════════════════════════════════════════════════════╗</div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">🔬</span>
+                    <span class="category-title">Medical Research</span>
+                    <span class="classification">ROUTINE</span>
+                </div>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Capricor Reports Positive Phase 3 HOPE-3 Trial Results for Deramiocel in Duchenne Muscular Dystrophy</h2>
+                    <p class="article-preview">Capricor Therapeutics announced positive topline results from the Phase 3 HOPE-3 trial of Deramiocel in Duchenne muscular dystrophy...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            Capricor Therapeutics announced positive topline results from the Phase 3 HOPE-3 trial of Deramiocel in Duchenne muscular dystrophy. Results showed statistically significant improvements in both skeletal and cardiac function, with a nearly 54% slowing of skeletal muscle disease progression. This is the first-ever Phase 3 trial in a largely non-ambulatory DMD population to successfully meet its primary endpoint.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://www.capricor.com/investors/news-events/press-releases/detail/331/capricor-therapeutics-announces-positive-topline-results" target="_blank">https://www.capricor.com/investors/news-events/press-releases/detail/331/capricor-therapeutics-announces-positive-topline-results</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="ascii-divider">╔═══════════════════════════════════════════════════════════╗</div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">🎭</span>
+                    <span class="category-title">Entertainment</span>
+                    <span class="classification">ROUTINE</span>
+                </div>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Washington National Opera Says It Will No Longer Perform at Kennedy Center</h2>
+                    <p class="article-preview">The Washington National Opera is the latest organization to announce they will no longer perform at the Kennedy Center...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            The Washington National Opera is the latest organization to announce they will no longer perform at the Kennedy Center since Trump took over last year. The current board has been calling it the Trump Kennedy Center, prompting boycotts from major cultural institutions.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://www.npr.org/sections/news/" target="_blank">https://www.npr.org/sections/news/</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="ascii-divider">╔═══════════════════════════════════════════════════════════╗</div>
+
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-icon">⚽</span>
+                    <span class="category-title">Sports</span>
+                    <span class="classification">ROUTINE</span>
+                </div>
+
+                <article class="article" onclick="toggleArticle(this)">
+                    <h2 class="article-title">Macclesfield Eliminates FA Cup Holders in Historic Upset</h2>
+                    <p class="article-preview">In a stunning result, Macclesfield became the first side from outside the major national leagues in 117 years to eliminate the reigning FA Cup holders...</p>
+                    <div class="article-details">
+                        <div class="article-summary">
+                            In a stunning result, Macclesfield became the first side from outside the major national leagues in 117 years to eliminate the reigning FA Cup holders. Goal scorers Isaac Buckley-Ricketts and Paul Dawson led the team to victory in the Emirates FA Cup Third Round.
+                        </div>
+                        <div class="article-source">
+                            SOURCE: <a href="https://www.npr.org/sections/news/" target="_blank">https://www.npr.org/sections/news/</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <footer>
+            <div>⚠ CLASSIFIED INFORMATION - AUTHORIZED PERSONNEL ONLY ⚠</div>
+            <div style="margin-top: 15px;">NEWS.SYS v2.1.12 / DIGEST COMPILED 00:00:00 UTC</div>
+            <div class="design-note">
+                today's design: emergency alert system<br>
+                (crisis-heavy briefing: military action, regional conflicts, security threats, domestic tensions)
+            </div>
+        </footer>
     </div>
 
     <script>
-        function toggleArticle(article) {
-            article.classList.toggle('expanded');
+        function toggleArticle(element) {
+            element.classList.toggle('expanded');
         }
 
         document.addEventListener('keydown', function(e) {
