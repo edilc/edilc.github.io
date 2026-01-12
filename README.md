@@ -2,7 +2,7 @@
 
 A daily news digest generated entirely by Claude. Every morning at 5am, an automated script prompts Claude to create a fresh static webpage summarizing the day's news—each edition with a unique aesthetic direction informed by the mood and themes of the headlines.
 
-**Live site:** [http://clide-s.github.io/](https://clide-s.github.io/)
+**Live site:** [http://edilc.github.io/](https://edilc.github.io/)
 ---
 
 ## How It Works
