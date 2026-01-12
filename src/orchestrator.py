@@ -1,7 +1,6 @@
 """Orchestrates the three-stage news generation pipeline."""
 
 import asyncio
-import random
 
 from anthropic import Anthropic
 from rich.console import Console
@@ -49,14 +48,8 @@ class NewsOrchestrator:
                 f"(need at least 10)"
             )
 
-        # Wait before Stage 2 to avoid rate limits
-        await self._wait_between_stages(1, 2)
-
         # Stage 2: Curate
         await self._stage_2_curate()
-
-        # Wait before Stage 3 to avoid rate limits
-        await self._wait_between_stages(2, 3)
 
         # Stage 3: Build webpage
         await self._stage_3_build()
@@ -65,18 +58,6 @@ class NewsOrchestrator:
             raise ValueError("Failed to build webpage")
 
         return self.state.build_result.html_content
-
-    async def _wait_between_stages(self, from_stage: int, to_stage: int):
-        """Wait 1-2 minutes between stages to avoid rate limits."""
-        wait_seconds = random.randint(60, 120)
-        self.console.print(
-            f"\n[yellow]Waiting {wait_seconds}s before Stage {to_stage} "
-            f"to avoid rate limits...[/yellow]"
-        )
-        self.logger.info(
-            f"Waiting {wait_seconds}s between Stage {from_stage} and Stage {to_stage}"
-        )
-        await asyncio.sleep(wait_seconds)
 
     async def _stage_1_gather(self):
         """Stage 1: Run 2 specialized gatherer agents in parallel."""
