@@ -20,6 +20,14 @@ from src.models.article import AgentResult, AgentType, PipelineState
 from src.prompts.builder_prompt import get_builder_prompt_template
 from src.prompts.curator_prompt import CURATOR_PROMPT
 from src.prompts.gatherer_prompts import get_gatherer_prompt
+from src.utils.creative_nudge import generate_creative_nudge, format_nudge
+from src.utils.design_memory import (
+    extract_design_summary,
+    format_design_memory,
+    get_recent_designs,
+    get_today_date,
+    save_design_summary,
+)
 from src.utils.file_logger import setup_file_logger, get_logger
 
 
@@ -181,12 +189,28 @@ class NewsOrchestrator:
         """Stage 3: Build webpage with Sonnet."""
         self.console.print("\n[bold cyan]Stage 3: Building Webpage[/bold cyan]")
 
+        # Load recent designs from memory
+        recent = get_recent_designs(n=3)
+        recent_designs_context = format_design_memory(recent)
+
+        # Generate creative nudge
+        nudge = generate_creative_nudge()
+        nudge_context = format_nudge(nudge)
+
+        # Log what we're using
+        if nudge["type"] != "none":
+            self.console.print(f"[dim]Creative nudge: {nudge['type']}[/dim]")
+        if recent:
+            self.console.print(f"[dim]Memory: {len(recent)} recent designs loaded[/dim]")
+
         # Load builder prompt template
         builder_prompt = get_builder_prompt_template()
 
         builder = BuilderAgent(
             client=self.client,
-            prompt_template=builder_prompt
+            prompt_template=builder_prompt,
+            recent_designs=recent_designs_context,
+            creative_nudge=nudge_context,
         )
 
         with Progress(
@@ -205,6 +229,13 @@ class NewsOrchestrator:
             self.console.print("\n[bold]Stage 3 Complete[/bold]")
             self.console.print(f"  HTML size: {len(result.html_content)} characters")
             self.console.print(f"  Time: {result.execution_time_seconds:.1f}s")
+
+            # Save design summary to memory
+            today = get_today_date()
+            summary = extract_design_summary(result.html_content, today)
+            save_design_summary(summary)
+            self.console.print(f"[dim]Design summary saved to memory[/dim]")
+
         else:
             self.console.print(f"\n[red]Stage 3 Failed: {result.error_message}[/red]")
             raise ValueError("Build failed")

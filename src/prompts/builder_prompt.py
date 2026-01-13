@@ -23,6 +23,14 @@ You are designing a unique artifact for today's news—not rendering a template.
 
 ---
 
+## Context: Recent Designs
+
+{recent_designs}
+
+{creative_nudge}
+
+---
+
 ## Essential Requirements (The Only Rules)
 
 Every generated page MUST include these elements somewhere:
@@ -91,6 +99,15 @@ Based on your analysis, imagine a complete visual approach. Ask yourself:
 - Which aesthetic or medium does this mood evoke?
 - How can the design amplify or comment on the content?
 - What would make someone stop and notice this page is different?
+
+**Avoid Repetition:**
+- Check the recent designs listed in the Context section above
+- If your instinct is to do something similar to a recent design: **STOP** and choose a different direction
+- The goal is variety across days, not just quality on any single day
+- If the last few days were dark/somber, today should probably be light
+- If the last few days were text-heavy, today should probably be visual
+- If the last few days were structured, today should probably be loose
+- **Your job is to make today meaningfully different from yesterday**
 
 Include a design brief as an HTML comment at the top:
 ```html
@@ -161,8 +178,10 @@ Don't play it safe. Make something memorable.
 
 
 def get_builder_prompt_template() -> str:
-    """Get the builder prompt template (no longer loads original_prompt_path)."""
+    """Get the builder prompt template with placeholders for all parameters."""
     return BUILDER_PROMPT.format(
         today="{today}",
         articles="{articles}",
+        recent_designs="{recent_designs}",
+        creative_nudge="{creative_nudge}",
     )

@@ -10,11 +10,19 @@ from src.models.article import Article, BuildResult
 class BuilderAgent(BaseNewsAgent):
     """Sonnet agent that builds the final HTML webpage."""
 
-    def __init__(self, client, prompt_template: str):
+    def __init__(
+        self,
+        client,
+        prompt_template: str,
+        recent_designs: str = "",
+        creative_nudge: str = "",
+    ):
         super().__init__(
             client, name="Builder-Sonnet", model="claude-sonnet-4-5-20250929"
         )
         self.prompt_template = prompt_template
+        self.recent_designs = recent_designs
+        self.creative_nudge = creative_nudge
 
     async def execute(self, articles: list[Article]) -> BuildResult:
         """Build the final HTML webpage."""
@@ -26,8 +34,13 @@ class BuilderAgent(BaseNewsAgent):
             # Format articles for the prompt
             article_data = self._format_articles(articles)
 
-            # Format prompt
-            prompt = self._format_prompt(self.prompt_template, articles=article_data)
+            # Format prompt with articles, memory, and nudge
+            prompt = self._format_prompt(
+                self.prompt_template,
+                articles=article_data,
+                recent_designs=self.recent_designs,
+                creative_nudge=self.creative_nudge,
+            )
 
             # Call Claude (no web search, higher token limit for HTML)
             response = await self._call_claude(prompt, max_tokens=16000)
