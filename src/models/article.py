@@ -22,31 +22,6 @@ class AgentType(Enum):
     DEEP_CUTS = "deep_cuts"
 
 
-class NewsCategory(Enum):
-    """News domain categories."""
-
-    # Mainstream
-    POLITICS = "politics_policy"
-    BUSINESS = "business_markets"
-    SPORTS = "sports"
-    ENTERTAINMENT = "entertainment"
-    WORLD = "world_affairs"
-    VIRAL = "viral_cultural"
-
-    # Deep cuts
-    MEDICAL = "medical_research"
-    SCIENCE = "scientific_discoveries"
-    REGULATORY = "regulatory_filings"
-    FINANCIAL = "financial_filings"
-    LEGAL = "legal_courts"
-    CLIMATE = "climate_environment"
-    SPACE = "space_aerospace"
-    AI_TECH = "ai_emerging_tech"
-
-    # Meta
-    CORRECTIONS = "corrections_retractions"
-
-
 @dataclass
 class Article:
     """Single news article with metadata."""
@@ -60,7 +35,6 @@ class Article:
     source_url: str = ""
 
     # Metadata
-    category: NewsCategory = NewsCategory.WORLD
     credibility_tier: CredibilityTier = CredibilityTier.ALTERNATIVE
     published_date: Optional[datetime] = None
 
@@ -80,7 +54,6 @@ class AgentResult:
     """Result from a single gathering agent."""
 
     agent_name: str
-    category: NewsCategory
     articles: list[Article] = field(default_factory=list)
 
     # Performance metrics

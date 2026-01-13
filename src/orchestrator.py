@@ -109,7 +109,6 @@ class NewsOrchestrator:
                     agent = agents[i]
                     error_result = AgentResult(
                         agent_name=agent.name,
-                        category=agent.category,
                         success=False,
                         error_message=str(result),
                     )
@@ -140,29 +139,16 @@ class NewsOrchestrator:
                         f"  - {result.agent_name}: {result.error_message}"
                     )
 
-        # Show per-category breakdown
-        self.console.print("\n[dim]Articles by category:[/dim]")
+        # Show per-agent breakdown
+        self.console.print("\n[dim]Articles by agent:[/dim]")
         for result in sorted(
             self.state.agent_results, key=lambda r: len(r), reverse=True
         ):
             if result.success:
                 self.console.print(
-                    f"  {result.category.value}: {len(result)} articles "
+                    f"  {result.agent_name}: {len(result)} articles "
                     f"({result.search_count} searches, {result.execution_time_seconds:.1f}s)"
                 )
-
-        # Check if all articles have same category (indicates a problem)
-        all_categories = set()
-        for result in self.state.agent_results:
-            if result.success:
-                for article in result.articles:
-                    all_categories.add(article.category.value)
-
-        if len(all_categories) == 1:
-            self.console.print(
-                f"\n[yellow]WARNING: All articles have the same category ({list(all_categories)[0]}). "
-                f"This may indicate a categorization issue.[/yellow]"
-            )
 
     async def _stage_2_curate(self):
         """Stage 2: Curate articles with Opus."""

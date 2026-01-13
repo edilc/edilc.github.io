@@ -22,15 +22,6 @@ Coverage areas (in a single search):
 - Significant sports news
 - Trending topics with broad public interest
 
-**CRITICAL REQUIREMENT: Every article MUST include a "category" field.**
-Choose the most appropriate category from these options ONLY:
-- "politics_policy" - Politics, government, policy, elections
-- "business_markets" - Business news, markets, economy, finance
-- "sports" - Sports news and events
-- "entertainment" - Entertainment, culture, arts
-- "world_affairs" - International news, foreign affairs
-- "viral_cultural" - Viral stories, social media trends, cultural moments
-
 Output format (JSON only, no other text):
 {{{{
   "articles": [
@@ -39,8 +30,7 @@ Output format (JSON only, no other text):
       "summary": "5-6 sentence summary of the article with key details",
       "source_url": "https://...",
       "credibility_tier": 1-3 (1=official/primary, 2=major outlet, 3=blog/social),
-      "published_date": "YYYY-MM-DD or null",
-      "category": "REQUIRED - must be one of the categories listed above"
+      "published_date": "YYYY-MM-DD or null"
     }}}}
   ]
 }}}}
@@ -90,13 +80,6 @@ Search strategy - Use up to 5 searches to cover these areas:
 - Peer-reviewed studies making news
 - Search terms: "published in Nature", "research paper", "scientific study", "published today"
 
-**CRITICAL REQUIREMENT: Every article MUST include a "category" field.**
-Choose the most appropriate category from these options ONLY:
-- "medical_research" - FDA approvals, clinical trials, medical devices, healthcare research
-- "scientific_discoveries" - Research papers, scientific breakthroughs, academic studies
-- "legal_courts" - Court rulings, judicial decisions, legal precedents
-- "regulatory_filings" - Regulatory enforcement, compliance actions, agency decisions
-
 Output format (JSON only, no other text):
 {{{{
   "articles": [
@@ -105,8 +88,7 @@ Output format (JSON only, no other text):
       "summary": "5-6 sentence summary including significance, stage, and key details (e.g., 'FDA approved', 'Phase 3 trial', 'published in Nature')",
       "source_url": "https://...",
       "credibility_tier": 1-3 (1=official/primary, 2=major outlet, 3=blog/social),
-      "published_date": "YYYY-MM-DD or null",
-      "category": "REQUIRED - must be one of the categories listed above"
+      "published_date": "YYYY-MM-DD or null"
     }}}}
   ]
 }}}}

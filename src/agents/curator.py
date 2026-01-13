@@ -75,7 +75,6 @@ class CuratorAgent(BaseNewsAgent):
                 f"UUID: {article.uuid}\n"
                 f"Title: {article.title}\n"
                 f"Summary: {article.summary}\n"
-                f"Category: {article.category.value}\n"
                 f"Credibility: Tier {article.credibility_tier.value}\n"
                 f"Published: {article.published_date or 'Unknown'}\n"
                 f"---"
