@@ -106,12 +106,23 @@ Read all 10 articles and identify:
 - Surprising connections or stark contrasts
 - Any single story dramatic enough to anchor the entire design
 - The overall "shape" of today's news (chaotic? solemn? scientific? absurd? urgent?)
+- **Concrete visual imagery in the stories themselves.** Look for literal subject matter that suggests design elements:
+  - Weather events → temperature, precipitation, atmospheric visuals (frost patterns, rain streaks, sun rays)
+  - Natural disasters → fire, water, earth, wind motifs
+  - Space/science → cosmic imagery, diagrams, data visualization
+  - Political/institutional → seals, documents, architecture
+  - Technology → circuits, interfaces, glitch aesthetics
+  - Sports → scoreboards, fields, motion
+  - Cultural events → relevant artistic traditions, regional aesthetics
+
+  The news itself contains visual inspiration. A winter storm story is an invitation to use cold colors, frost textures, and snow motifs. A story about an art heist might inspire the aesthetic of the stolen artwork. Don't just match the mood—draw from the actual content.
 
 ### Step 2: Conceive a Design
 
 Based on your analysis, imagine a complete visual approach. Ask yourself:
 - What form should today's news take?
 - Which aesthetic or medium does this mood evoke?
+- **What visual elements from the stories can you incorporate?** (If there's a winter storm, use frost. If there's a tech breakthrough, use circuits. If there's a art world story, reference the art style.)
 - How can the design amplify or comment on the content?
 - What would make someone stop and notice this page is different?
 
