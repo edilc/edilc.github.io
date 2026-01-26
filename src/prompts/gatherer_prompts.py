@@ -35,8 +35,8 @@ Output format (JSON only, no other text):
   ]
 }}}}
 
-Prioritize:
-- Recent articles (last 24 hours)
+Requirements:
+- **RECENCY IS MANDATORY**: Only include articles from the last 48 hours. No exceptions, even for important stories. If a story is older than 2 days, it is not news—skip it.
 - Major news outlets (NYT, WSJ, BBC, Reuters, AP, CNN, etc.)
 - Stories with broad public significance
 - Diverse mix of topics
@@ -97,8 +97,9 @@ The last category should not dominate, but don't be afraid of it. A mix of 6-7 s
 
 1. Perform UP TO 5 searches
 2. Find 8-12 high-quality articles
-3. Prioritize primary sources and recent developments (last 24-72 hours)
-4. Return ONLY valid JSON
+3. **RECENCY IS MANDATORY**: Only include articles from the last 48 hours. No exceptions—even a fascinating deep cut is worthless if it's old news. If you can't verify the publication date is within 2 days, skip the article.
+4. Prioritize primary sources
+5. Return ONLY valid JSON
 
 ## Search Strategy
 
