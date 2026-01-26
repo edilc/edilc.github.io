@@ -1,10 +1,6 @@
 [
   {
     "date": "2026-01-21",
-    "brief": "Today's news has a clear gravitational center: Trump's Greenland threats roiling global markets. Everything else orbits around this crisis\u2014legal rulings, tragedies, policy rebukes, uncertainty at FDA. The page becomes a solar system with the market disruption as its sun, and all other stories as satellites pulled into its field. Click any satellite to expand and read its orbit-specific details."
-  },
-  {
-    "date": "2026-01-21",
     "brief": "Today's news felt like standing in a gallery where each piece demands individual attention\u2014no single crisis dominates, but each story is weighty in its own right. The page becomes a curated exhibition with each article as a framed piece. Clean, contemplative, breathing room. After days of tension and data dashboards, today we slow down and observe."
   },
   {
@@ -38,5 +34,9 @@
   {
     "date": "2026-01-25",
     "brief": "Pure typographic hierarchy across extreme scale\u2014from 9rem hero headlines to compact 1.25rem treatments. The winter storm dominates like it dominates the continent, with subsequent stories arranged by visual weight rather than chronology. Minimal decoration: just clean sans-serif type, generous whitespace, and large numerals as the only graphic element. Space Grotesk provides geometric precision with warmth."
+  },
+  {
+    "date": "2026-01-26",
+    "brief": "Today's news has a strong scientific thread\u2014CRISPR breakthroughs, DNA methylation, immune cell mapping. The design responds with a laboratory aesthetic: petri dishes (circular cards), microscope slides (featured stories), and an animated DNA helix in the header. Clean, specimen-like presentation that treats each story as something to examine and analyze. A refreshing shift from recent typographic approaches."
   }
 ]
