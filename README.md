@@ -18,7 +18,7 @@ A daily news digest generated entirely by Claude. Every morning at 5am, an autom
 1. A GitHub Actions workflow runs daily at 5am EST
 2. Claude's multi-agent system:
    - Searches for and gathers current news articles
-   - Curates the top 10 stories
+   - Curates the top stories
    - Analyzes themes and mood across the selected articles
    - Designs and generates a complete HTML page from scratch
 3. The generated `index.html` is committed and pushed to this repository
@@ -34,7 +34,7 @@ The Builder agent receives a prompt that gives it complete creative freedom whil
 
 ### Required Elements (The Only Rules)
 - The text "news.sys" and "News by Claude" appear somewhere
-- All 10 articles are presented (can mix full summaries and title-only with ways to access blurbs)
+- All articles are presented (can mix full summaries and title-only with ways to access blurbs)
 - Designer's notes included somewhere on the page
 - Self-contained, responsive, and accessible HTML
 
@@ -104,7 +104,7 @@ The workflow:
 1. Deletes the previous `index.html`
 2. Runs `generate_news.py` which executes a multi-agent pipeline:
    - Gatherer agents search for and collect news articles
-   - Curator agent selects the top 10 stories
+   - Curator agent selects the top stories
    - Builder agent analyzes themes and designs a complete HTML page from scratch
 3. The generated page is committed and pushed to the repository
 4. GitHub Pages automatically deploys the update

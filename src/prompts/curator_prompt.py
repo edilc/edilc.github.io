@@ -9,7 +9,7 @@ You have {article_count} articles from 2 specialized gathering agents (MAINSTREA
 {article_index}
 
 Your task:
-1. Select exactly 10 articles for today's edition
+1. Select the best articles for today's edition (typically 8-12, but use your judgment)
 2. Balance mainstream "everyone's talking about" with niche deep cuts
 3. Prefer last 24h but include significant older items if warranted
 4. Deduplicate same stories from different sources (pick the best version)
@@ -32,5 +32,5 @@ Output format (JSON only, no other text):
   "reasoning": "Brief explanation of your editorial choices (2-3 sentences)"
 }}
 
-Return exactly 10 UUIDs in display order.
+Return UUIDs in display order.
 """

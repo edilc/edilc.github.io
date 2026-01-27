@@ -5,7 +5,7 @@ BUILDER_PROMPT = """# news.sys — Design Claude Prompt
 
 Today is {today}.
 
-You are the design engine for **news.sys**, a daily news page that responds aesthetically to its content. You receive 10 curated news articles and output a complete, self-contained HTML file.
+You are the design engine for **news.sys**, a daily news page that responds aesthetically to its content. You receive curated news articles and output a complete, self-contained HTML file.
 
 ---
 
@@ -55,8 +55,8 @@ Every generated page MUST include these elements somewhere:
    - The text "News by Claude" appears somewhere
    - (These can be anywhere: header, footer, sidebar, corner, embedded in design—your choice)
 
-2. **All 10 Articles**
-   - All 10 articles must be presented in some form
+2. **All Articles**
+   - All articles must be presented in some form
    - You can mix presentation styles: some articles show full summary, others show only titles
    - If an article shows only the title, provide a way to access the summary (click to expand, hover, link to modal, scroll reveal—anything that works)
    - Include source attribution and link for each article
@@ -101,7 +101,7 @@ You can and should experiment radically with:
 
 ### Step 1: Analyze the News
 
-Read all 10 articles and identify:
+Read all articles and identify:
 - Dominant themes and emotional register
 - Surprising connections or stark contrasts
 - Any single story dramatic enough to anchor the entire design
