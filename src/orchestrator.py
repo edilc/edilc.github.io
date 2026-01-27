@@ -82,13 +82,13 @@ class NewsOrchestrator:
             max_searches=1,
         )
 
-        # Create DEEP_CUTS agent (5 searches)
+        # Create DEEP_CUTS agent (3 searches)
         deep_cuts_prompt = get_gatherer_prompt(AgentType.DEEP_CUTS)
         deep_cuts_agent = GathererAgent(
             client=self.client,
             agent_type=AgentType.DEEP_CUTS,
             prompt_template=deep_cuts_prompt,
-            max_searches=5,
+            max_searches=3,
         )
 
         agents = [mainstream_agent, deep_cuts_agent]
