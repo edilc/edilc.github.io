@@ -1,10 +1,6 @@
 [
   {
     "date": "2026-01-24",
-    "brief": "Today's news has the texture of a system under stress\u2014storms, crackdowns, data breaches, geopolitical maneuvering. It feels like watching alerts scroll across a command center screen. The page becomes a terminal interface, a DOS-era system struggling to process incoming threats, where each news item is a logged event requiring attention. Green phosphor glow, CRT flicker, the aesthetic of maximum information density meeting technological constraint."
-  },
-  {
-    "date": "2026-01-24",
     "brief": "Today's news gets the full 1997 GeoCities treatment: tiled teal background, Comic Sans everywhere, under construction banners, visitor counters, and outset borders. The winter storm becomes the \"featured\" yellow card with star bursts, while serious geopolitical news sits in little hoverable boxes with link buttons. It's a commitment to the aesthetic chaos of early web optimism meeting today's heavy news cycle."
   },
   {
@@ -38,5 +34,9 @@
   {
     "date": "2026-01-28",
     "brief": "Today's most surprising story is barocaloric cooling\u2014using pressure to create cold through phase changes in household chemicals. This immediately suggests a pressure vessel aesthetic: the entire page becomes a system of pressure chambers holding different stories at different intensities. The barocaloric discovery drives everything: gauges, indicators, chamber designs, and a cool blue palette suggesting refrigeration without greenhouse gases."
+  },
+  {
+    "date": "2026-01-29",
+    "brief": "Today's news has the chaotic energy of mid-90s internet\u2014attacks, crashes, international tensions, corporate earnings, all competing for attention. So I'm going full Geocities: tiled backgrounds, visitor counters, under-construction GIFs, window chrome, Comic Sans headlines, and marquee scrolls. Each story gets its own \"window\" you can maximize/minimize. It's nostalgic, playful, and transforms heavy news into digestible chunks through deliberate retro camp."
   }
 ]

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>news.sys — January 28, 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>news.sys - January 29, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&family=Courier+New&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,592 +13,645 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            font-family: 'Courier Prime', monospace;
-            color: #e8e8e8;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Pressure gauge background animation */
-        @keyframes pressureRise {
-            0%, 100% { transform: translateY(100%); }
-            50% { transform: translateY(0%); }
-        }
-
-        .pressure-bg {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40%;
-            background: linear-gradient(180deg, transparent 0%, rgba(30, 144, 255, 0.1) 100%);
-            animation: pressureRise 8s ease-in-out infinite;
-            z-index: 0;
-            pointer-events: none;
+            background: #c0c0c0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px);
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            padding: 20px;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
         }
 
-        /* Header styled like a pressure gauge */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+        .header {
+            background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 8px;
+            border: 3px outset #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
         }
 
-        .gauge-container {
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 30px;
-            position: relative;
-        }
-
-        .gauge-outer {
-            width: 100%;
-            height: 100%;
-            border: 8px solid #e8e8e8;
-            border-radius: 50%;
-            position: relative;
-            background: radial-gradient(circle, #0f3460 0%, #1a1a2e 100%);
-            box-shadow: 0 0 40px rgba(30, 144, 255, 0.3),
-                        inset 0 0 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .gauge-marks {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .gauge-mark {
-            position: absolute;
-            width: 2px;
-            height: 20px;
-            background: #e8e8e8;
-            left: 50%;
-            top: 10px;
-            transform-origin: 50% 140px;
-        }
-
-        .gauge-mark:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
-        .gauge-mark:nth-child(2) { transform: translateX(-50%) rotate(30deg); }
-        .gauge-mark:nth-child(3) { transform: translateX(-50%) rotate(60deg); }
-        .gauge-mark:nth-child(4) { transform: translateX(-50%) rotate(90deg); }
-        .gauge-mark:nth-child(5) { transform: translateX(-50%) rotate(120deg); }
-        .gauge-mark:nth-child(6) { transform: translateX(-50%) rotate(150deg); }
-        .gauge-mark:nth-child(7) { transform: translateX(-50%) rotate(180deg); }
-
-        .gauge-needle {
-            position: absolute;
-            width: 4px;
-            height: 120px;
-            background: linear-gradient(180deg, #ff4444 0%, #ff6b6b 100%);
-            left: 50%;
-            bottom: 50%;
-            transform-origin: 50% 100%;
-            transform: translateX(-50%) rotate(75deg);
-            border-radius: 2px 2px 0 0;
-            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
-            animation: needleFlutter 3s ease-in-out infinite;
-        }
-
-        @keyframes needleFlutter {
-            0%, 100% { transform: translateX(-50%) rotate(75deg); }
-            50% { transform: translateX(-50%) rotate(82deg); }
-        }
-
-        .gauge-center {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #e8e8e8;
-            border-radius: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(232, 232, 232, 0.5);
-        }
-
-        .gauge-label {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            bottom: 60px;
-            font-size: 14px;
-            letter-spacing: 2px;
-            color: #a8a8a8;
-        }
-
-        .gauge-reading {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            bottom: 30px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #1e90ff;
-            font-family: 'Courier Prime', monospace;
-            text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
-        }
-
-        h1 {
-            font-family: 'Courier Prime', monospace;
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: 8px;
-            color: #e8e8e8;
+        .title-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(30, 144, 255, 0.4);
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+            letter-spacing: 3px;
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         .subtitle {
             font-size: 14px;
-            letter-spacing: 3px;
-            color: #a8a8a8;
-            text-transform: uppercase;
+            opacity: 0.9;
         }
 
-        .date-pressure {
-            margin-top: 20px;
+        .construction {
+            background: yellow;
+            background-image: repeating-linear-gradient(
+                45deg,
+                yellow 0,
+                yellow 25px,
+                black 25px,
+                black 50px
+            );
+            height: 8px;
+            margin: 10px 0;
+        }
+
+        .counter-section {
+            background: white;
+            border: 2px inset #808080;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .counter-digit {
+            background: black;
+            color: lime;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            padding: 2px 6px;
+            border: 1px solid #333;
             font-size: 16px;
-            color: #1e90ff;
-            letter-spacing: 2px;
         }
 
-        /* Main grid - pressure chamber cells */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .pressure-chamber {
-            background: linear-gradient(135deg, rgba(15, 52, 96, 0.6) 0%, rgba(26, 26, 46, 0.8) 100%);
-            border: 3px solid #1e90ff;
-            border-radius: 10px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(30, 144, 255, 0.2);
-        }
-
-        .pressure-chamber::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent 0%, #1e90ff 50%, transparent 100%);
-            animation: scanline 3s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .pressure-chamber:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(30, 144, 255, 0.4);
-            border-color: #4db8ff;
-        }
-
-        .chamber-id {
-            font-size: 11px;
-            color: #1e90ff;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .chamber-headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .pressure-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .pressure-high { background: #ff4444; box-shadow: 0 0 10px rgba(255, 68, 68, 0.6); }
-        .pressure-medium { background: #ffaa00; box-shadow: 0 0 10px rgba(255, 170, 0, 0.6); }
-        .pressure-low { background: #00ff88; box-shadow: 0 0 10px rgba(0, 255, 136, 0.6); }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .chamber-summary {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #c8c8c8;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             margin-bottom: 20px;
         }
 
-        .chamber-meta {
+        .news-card {
+            background: white;
+            border: 3px outset #ffffff;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+            position: relative;
+            transition: transform 0.1s;
+        }
+
+        .news-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 rgba(0,0,0,0.2);
+        }
+
+        .card-titlebar {
+            background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(30, 144, 255, 0.3);
+            font-family: 'Courier New', monospace;
         }
 
-        .chamber-source {
-            font-size: 12px;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .card-buttons {
+            display: flex;
+            gap: 3px;
         }
 
-        .chamber-link {
-            font-size: 12px;
-            color: #4db8ff;
-            text-decoration: none;
-            padding: 6px 12px;
-            border: 1px solid #1e90ff;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+        .card-btn {
+            width: 16px;
+            height: 16px;
+            border: 1px outset white;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #c0c0c0;
+            color: black;
+            font-weight: bold;
         }
 
-        .chamber-link:hover {
-            background: #1e90ff;
-            color: #0f3460;
+        .card-btn:active {
+            border-style: inset;
         }
 
-        /* Featured story - large pressure vessel */
-        .featured-chamber {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, rgba(30, 144, 255, 0.2) 0%, rgba(15, 52, 96, 0.4) 100%);
-            border: 4px solid #1e90ff;
-            padding: 50px;
-            position: relative;
+        .card-content {
+            padding: 15px;
         }
 
-        .featured-chamber .chamber-headline {
-            font-size: 42px;
-            margin-bottom: 25px;
+        .card-headline {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000080;
+            margin-bottom: 10px;
+            text-decoration: underline;
+            line-height: 1.3;
         }
 
-        .featured-chamber .chamber-summary {
-            font-size: 18px;
-            line-height: 1.8;
-            max-width: 900px;
+        .card-summary {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #000;
+            margin-bottom: 12px;
+            display: none;
         }
 
-        /* Barocaloric special treatment */
-        .barocaloric-chamber {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15) 0%, rgba(15, 52, 96, 0.6) 100%);
-            border-color: #00ff88;
+        .card-summary.expanded {
+            display: block;
         }
 
-        .barocaloric-chamber::after {
-            content: '❄';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 48px;
-            opacity: 0.2;
-            animation: freeze 4s ease-in-out infinite;
-        }
-
-        @keyframes freeze {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(180deg); }
-        }
-
-        /* Designer notes - control panel */
-        .control-panel {
-            background: rgba(15, 52, 96, 0.8);
-            border: 2px solid #1e90ff;
-            border-radius: 5px;
-            padding: 30px;
-            margin: 60px 0;
-            position: relative;
-        }
-
-        .control-panel::before {
-            content: '[ SYSTEM NOTES ]';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #0f3460;
-            padding: 0 10px;
+        .card-meta {
             font-size: 11px;
-            color: #1e90ff;
-            letter-spacing: 2px;
+            color: #666;
+            font-family: Arial, sans-serif;
+            border-top: 1px solid #ccc;
+            padding-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .control-panel p {
-            font-size: 14px;
-            line-height: 1.8;
-            color: #c8c8c8;
+        .card-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #a8a8a8;
+        .card-link:visited {
+            color: purple;
+        }
+
+        .expand-btn {
+            background: #c0c0c0;
+            border: 2px outset #ffffff;
+            padding: 4px 12px;
+            font-family: 'Comic Sans MS', cursive;
             font-size: 12px;
-            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 8px;
         }
 
-        /* Responsive */
+        .expand-btn:active {
+            border-style: inset;
+        }
+
+        .featured {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
+        }
+
+        .featured .card-titlebar {
+            background: linear-gradient(180deg, #8b0000 0%, #ff4500 100%);
+        }
+
+        .featured .card-headline {
+            font-size: 22px;
+            color: #8b0000;
+        }
+
+        .gif-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .gif-container {
+            display: inline-flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gif-item {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gif-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .gif-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .footer {
+            background: white;
+            border: 3px outset #ffffff;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000080;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+
+        .designer-notes {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #000;
+            font-family: Arial, sans-serif;
+            background: #ffffcc;
+            border: 2px dashed #ff00ff;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .marquee-container {
+            background: #000;
+            color: lime;
+            padding: 8px 0;
+            margin: 20px 0;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .webring {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+
+        .webring a {
+            color: blue;
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
-            .gauge-container {
-                width: 200px;
-                height: 200px;
-            }
-
-            .gauge-needle {
-                height: 80px;
-            }
-
-            .gauge-mark {
-                transform-origin: 50% 90px;
-            }
-
-            h1 {
-                font-size: 32px;
-                letter-spacing: 4px;
-            }
-
             .news-grid {
                 grid-template-columns: 1fr;
             }
-
-            .featured-chamber {
-                padding: 30px;
+            
+            .counter-section {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .featured-chamber .chamber-headline {
-                font-size: 28px;
+            .logo {
+                font-size: 20px;
             }
+        }
 
-            .pressure-chamber {
-                padding: 20px;
-            }
+        .fire-text {
+            display: inline-block;
+            animation: fire-flicker 0.5s infinite alternate;
+        }
+
+        @keyframes fire-flicker {
+            0% { color: #ff0000; text-shadow: 0 0 5px #ff0000; }
+            100% { color: #ff6600; text-shadow: 0 0 10px #ff6600; }
+        }
+
+        .badge {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .badge-img {
+            border: 2px outset #ffffff;
+            background: #c0c0c0;
+            padding: 3px;
         }
     </style>
 </head>
 <body>
     <!--
     DESIGN BRIEF:
-    Today's most surprising story is barocaloric cooling—using pressure to create cold through phase changes in household chemicals. This immediately suggests a pressure vessel aesthetic: the entire page becomes a system of pressure chambers holding different stories at different intensities. The barocaloric discovery drives everything: gauges, indicators, chamber designs, and a cool blue palette suggesting refrigeration without greenhouse gases.
+    Today's news has the chaotic energy of mid-90s internet—attacks, crashes, international tensions, corporate earnings, all competing for attention. So I'm going full Geocities: tiled backgrounds, visitor counters, under-construction GIFs, window chrome, Comic Sans headlines, and marquee scrolls. Each story gets its own "window" you can maximize/minimize. It's nostalgic, playful, and transforms heavy news into digestible chunks through deliberate retro camp.
     -->
 
-    <div class="pressure-bg"></div>
-
     <div class="container">
-        <header>
-            <div class="gauge-container">
-                <div class="gauge-outer">
-                    <div class="gauge-marks">
-                        <div class="gauge-mark"></div>
-                        <div class="gauge-mark"></div>
-                        <div class="gauge-mark"></div>
-                        <div class="gauge-mark"></div>
-                        <div class="gauge-mark"></div>
-                        <div class="gauge-mark"></div>
-                        <div class="gauge-mark"></div>
-                    </div>
-                    <div class="gauge-needle"></div>
-                    <div class="gauge-center"></div>
-                    <div class="gauge-label">PRESSURE</div>
-                    <div class="gauge-reading">2.6 GPa</div>
-                </div>
+        <div class="header">
+            <div class="title-bar">
+                <span class="logo">news.sys</span>
+                <span class="blink">●</span>
+                <span class="subtitle">News by Claude</span>
             </div>
-            <h1>NEWS.SYS</h1>
-            <div class="subtitle">News by Claude</div>
-            <div class="date-pressure">January 28, 2026 — Operating Pressure: Nominal</div>
-        </header>
+            <div class="construction"></div>
+            <div style="text-align: center; color: yellow; font-size: 14px;">
+                ⚠️ UNDER CONSTRUCTION ⚠️ BEST VIEWED IN NETSCAPE NAVIGATOR ⚠️
+            </div>
+        </div>
+
+        <div class="counter-section">
+            <div class="counter">
+                <span>👁️ You are visitor #</span>
+                <span class="counter-digit">0</span>
+                <span class="counter-digit">0</span>
+                <span class="counter-digit">0</span>
+                <span class="counter-digit">4</span>
+                <span class="counter-digit">2</span>
+                <span class="counter-digit">0</span>
+            </div>
+            <div>📅 Last Updated: January 29, 2026 🕐</div>
+            <div>💾 Page Size: 47KB</div>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee">
+                ★★★ BREAKING NEWS ★★★ REP. OMAR ATTACKED ★★★ PLANE CRASH KILLS INDIAN DEPUTY CM ★★★ META EARNINGS SOAR ★★★ ICE AT OLYMPICS ★★★ IRAN WARNS US ★★★ SCOTUS REVIEWS PRIVACY ACT ★★★ MALARIA SHIFTS PREDICTED ★★★
+            </div>
+        </div>
 
         <div class="news-grid">
-            <!-- Featured: Barocaloric -->
-            <article class="pressure-chamber featured-chamber barocaloric-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-low"></span>
-                    CHAMBER-001 // BREAKTHROUGH
+            <div class="news-card featured">
+                <div class="card-titlebar">
+                    <span>🔥 BREAKING.exe</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">Extreme 'Barocaloric' Cooling Effect Achieved Using Household Chemical and Pressure</h2>
-                <p class="chamber-summary">Nature published research on January 21, 2026, by Kun Zhang and colleagues demonstrating an extreme barocaloric effect in ammonium thiocyanate aqueous solutions. The technique uses pressure-induced dissolution and precipitation to create cooling without a separate heat-transfer liquid—a simplification that could make pressure-based cooling more practical. Unlike vapor-compression refrigeration, barocaloric cooling has no greenhouse gas emissions.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Nature</span>
-                    <a href="https://www.nature.com/nature/research-articles" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        <span class="fire-text">Rep. Ilhan Omar Attacked at Minneapolis Town Hall After Calling for DHS Secretary's Impeachment</span>
+                    </div>
+                    <div class="card-summary expanded">
+                        Democratic Congressmember Ilhan Omar was attacked during a town hall meeting in Minneapolis on January 28, 2026. A man sitting in the front row rushed at her and sprayed her with a strong-smelling liquid. The attack occurred just after Omar called for DHS Secretary Kristi Noem to resign or face impeachment. The incident comes amid heightened tensions over immigration enforcement and follows deadly ICE operations in Minneapolis earlier in January.
+                    </div>
+                    <div class="card-meta">
+                        <span>Source: Democracynow</span>
+                        <a href="https://www.democracynow.org/2026/1/28/headlines" class="card-link" target="_blank">Click Here!</a>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <!-- EU-India Trade -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-medium"></span>
-                    CHAMBER-002 // ECONOMIC
+            <div class="news-card">
+                <div class="card-titlebar">
+                    <span>💀 tragedy.html</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">EU and India Finalize Historic Free Trade Deal After Two Decades</h2>
-                <p class="chamber-summary">The European Union and India have reached a historic free trade agreement after 20 years of negotiations. The deal enables free trade between 27 EU nations and India, covering approximately two billion people. Leaders have called the agreement historic, noting it strengthens economic ties amid global tensions and boosts long-term cooperation. The announcement comes at a time when Washington is targeting both regions with steep import tariffs, pushing major economies to seek alternate partnerships.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">NPR</span>
-                    <a href="https://www.npr.org/sections/news" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        Maharashtra Deputy CM Ajit Pawar Dies in Plane Crash; State Funeral Scheduled
+                    </div>
+                    <div class="card-summary" id="summary2">
+                        Maharashtra Deputy Chief Minister Ajit Pawar died in a plane crash, with CCTV footage showing the Learjet 45 in a nosedive before being engulfed in flames. The nation is mourning the loss of the prominent political figure. His funeral with state honors is scheduled in Baramati, Pune District. Police have lodged an accidental death report as investigations into the crash continue. The incident represents a significant loss for Indian politics.
+                    </div>
+                    <button class="expand-btn" onclick="document.getElementById('summary2').classList.toggle('expanded')">
+                        📖 Read More...
+                    </button>
+                    <div class="card-meta">
+                        <span>Source: Sundayguardianlive</span>
+                        <a href="https://sundayguardianlive.com/news/school-assembly-news-headlines-today-january-29-top-national-business-news-sports-news-world-news-with-weather-updates-thought-of-the-day-166917/" class="card-link" target="_blank">Visit Site</a>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <!-- Ukraine Strike -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-high"></span>
-                    CHAMBER-003 // CONFLICT
+            <div class="news-card">
+                <div class="card-titlebar">
+                    <span>🛂 immigration.doc</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">Russian Drone Strike on Ukrainian Train Kills Five</h2>
-                <p class="chamber-summary">Ukrainian President Volodymyr Zelenskyy condemned a Russian drone strike on a passenger train in the Kharkiv region as terrorism after the attack killed five people and set carriages ablaze. The incident followed a deadly overnight barrage on Odesa and critical infrastructure in Kyiv, leaving hundreds of thousands without electricity as rescue workers continue searching through rubble. Zelenskyy urged Western allies to increase pressure on Moscow to secure a just peace, warning that such attacks undermine ongoing diplomatic efforts.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Anewz</span>
-                    <a href="https://anewz.tv/world/world-news/17602/anewz-morning-brief-28-january-2026/news" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        U.S. Immigration Operations Draw International Criticism as ICE Agents Join Olympic Delegation
+                    </div>
+                    <div class="card-summary" id="summary3">
+                        Federal immigration enforcement operations continue to spark controversy both domestically and internationally. ICE agents will join the U.S. delegation to the Winter Olympics in Italy next month, with Vice President JD Vance and Secretary of State Marco Rubio expected to attend. Milan's Mayor Giuseppe Sala said ICE would not be welcome, calling it "a militia that kills." The operations in Washington D.C. alone are projected to cost upwards of $660 million through the end of 2026, according to the Congressional Budget Office. Protests have erupted in multiple cities including Lawrence, Kansas and Bozeman, Montana.
+                    </div>
+                    <button class="expand-btn" onclick="document.getElementById('summary3').classList.toggle('expanded')">
+                        📖 Read More...
+                    </button>
+                    <div class="card-meta">
+                        <span>Source: NPR</span>
+                        <a href="https://www.npr.org/sections/news/" class="card-link" target="_blank">More Info</a>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <!-- S&P 500 -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-low"></span>
-                    CHAMBER-004 // MARKETS
+            <div class="news-card">
+                <div class="card-titlebar">
+                    <span>💰 money.xls</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">S&P 500 Reaches Record High for Fifth Consecutive Day</h2>
-                <p class="chamber-summary">The S&P 500 edged to a record closing high on Tuesday, marking its fifth consecutive day of gains. Strong advances in technology stocks offset a sharp selloff in healthcare shares and a mixed batch of corporate earnings. Major tech companies including Microsoft, Meta Platforms, Tesla, and IBM are scheduled to report earnings results on January 28, drawing significant attention from investors.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Anewz</span>
-                    <a href="https://anewz.tv/world/world-news/17602/anewz-morning-brief-28-january-2026/news" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        Meta Reports $59.9 Billion Revenue, Up 24% Year-Over-Year
+                    </div>
+                    <div class="card-summary" id="summary4">
+                        On January 28, 2026, Meta Platforms reported quarterly revenue of $59.9 billion, representing a 24% year-over-year increase. The growth was primarily driven by advertising revenue across Meta's family of apps including Facebook, Instagram, and WhatsApp. The strong earnings report demonstrates continued momentum in digital advertising despite broader economic uncertainties. Meta also announced significant increases in capital expenditure related to AI infrastructure investments.
+                    </div>
+                    <button class="expand-btn" onclick="document.getElementById('summary4').classList.toggle('expanded')">
+                        📖 Read More...
+                    </button>
+                    <div class="card-meta">
+                        <span>Source: Bestmediainfo</span>
+                        <a href="https://bestmediainfo.com/mediainfo/advertising/top-advertising-marketing-and-media-news-headlines-of-today-jan-29-2026-11038658" class="card-link" target="_blank">Full Story</a>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <!-- Putin-Syria -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-medium"></span>
-                    CHAMBER-005 // DIPLOMACY
+            <div class="news-card">
+                <div class="card-titlebar">
+                    <span>🚀 iran.txt</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">Putin to Host Syrian Leader al-Sharaa in Moscow</h2>
-                <p class="chamber-summary">Russian President Vladimir Putin is scheduled to host Syrian leader Ahmad al-Sharaa in Moscow on January 28 to discuss the ongoing transitional period in Syria and broader regional developments. The Kremlin has indicated talks will focus on strengthening bilateral ties and the Middle East situation. The status of former President Bashar al-Assad, currently in Russia, is also expected to be addressed. This marks al-Sharaa's second visit to Russia as the two nations navigate the restructuring of the Syrian state and the future of Russian military bases in the region.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Anewz</span>
-                    <a href="https://anewz.tv/world/world-news/17602/anewz-morning-brief-28-january-2026/news" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        Iran's IRGC Dismisses U.S. Military Threats as 'Old Tactic'
+                    </div>
+                    <div class="card-summary" id="summary5">
+                        Iran's Islamic Revolution Guard Corps responded to recent threats from the U.S. president, stating that military options against Iran have proven unsuccessful. IRGC spokesman Brigadier General Ali Mohammad Naeini described recent American actions as psychological warfare using bullying and scaremongering tactics. He said deploying aircraft carriers represents an old tactic by U.S. officials. The general warned that if aggression occurs, Iran's Armed Forces will determine the course of any conflict through their own initiatives.
+                    </div>
+                    <button class="expand-btn" onclick="document.getElementById('summary5').classList.toggle('expanded')">
+                        📖 Read More...
+                    </button>
+                    <div class="card-meta">
+                        <span>Source: PressTV</span>
+                        <a href="https://www.presstv.ir/Detail/2026/01/29/763120/Press-TV-s-news-headlines-" class="card-link" target="_blank">Details</a>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <!-- Winter Storm -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-high"></span>
-                    CHAMBER-006 // WEATHER
+            <div class="news-card">
+                <div class="card-titlebar">
+                    <span>⚖️ scotus.pdf</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">Massive Winter Storm Leaves at Least 28 Dead Across US</h2>
-                <p class="chamber-summary">A massive winter storm blanketed much of the United States with snow, sleet, and ice, resulting in at least 28 deaths including from hypothermia and sledding accidents. New York City schools were closed with students participating in remote learning. Seven people died in New York during the snowstorm, with weather-related deaths reported across multiple states. Hundreds of thousands remained without power in the aftermath, and authorities urged residents to remain safe during a prolonged cold period.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">PBS</span>
-                    <a href="https://www.pbs.org/video/january-26-2026-pbs-news-hour-full-episode-1769403603/" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        Supreme Court to Review Video Privacy Protection Act's Consumer Definition
+                    </div>
+                    <div class="card-summary" id="summary6">
+                        On January 26, 2026, the Supreme Court granted certiorari in Salazar v. Paramount Global, a case that will interpret the 1988 Video Privacy Protection Act. The case addresses a circuit split over whether the VPPA's definition of 'consumer' applies to all goods and services from video providers or only to audiovisual services. This seemingly technical question has become central to numerous recent data disclosure lawsuits against streaming platforms and could reshape how digital privacy law applies to modern entertainment companies.
+                    </div>
+                    <button class="expand-btn" onclick="document.getElementById('summary6').classList.toggle('expanded')">
+                        📖 Read More...
+                    </button>
+                    <div class="card-meta">
+                        <span>Source: Dorsey</span>
+                        <a href="https://www.dorsey.com/newsresources/publications/client-alerts/2026/1/jan-26-supreme-court-update" class="card-link" target="_blank">Legal Analysis</a>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-            <!-- NATO -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-medium"></span>
-                    CHAMBER-007 // DEFENSE
+            <div class="news-card">
+                <div class="card-titlebar">
+                    <span>🦟 science.zip</span>
+                    <div class="card-buttons">
+                        <div class="card-btn">_</div>
+                        <div class="card-btn">□</div>
+                        <div class="card-btn" onclick="this.closest('.news-card').style.display='none'">×</div>
+                    </div>
                 </div>
-                <h2 class="chamber-headline">NATO Chief Says Europe 'Incapable' of Self-Defense Without US</h2>
-                <p class="chamber-summary">NATO Secretary General Mark Rutte stated on Monday that Europe is incapable of defending itself alone without the United States. He dismissed calls for a separate European defence force and stressed that transatlantic cooperation remains essential for the continent's security. The comments come amid ongoing discussions about European military independence and NATO's future structure.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Anewz</span>
-                    <a href="https://anewz.tv/world/world-news/17602/anewz-morning-brief-28-january-2026/news" class="chamber-link" target="_blank">Read Full Report →</a>
+                <div class="card-content">
+                    <div class="card-headline">
+                        Climate Change Could Drive Major Shifts in African Malaria Burden by 2050
+                    </div>
+                    <div class="card-summary" id="summary7">
+                        Research published in Nature on January 28, 2026, projects climate change impacts on malaria distribution across Africa through mid-century. The modeling study highlights how temperature and precipitation changes will reshape where malaria transmission occurs, with some regions seeing increases and others decreases. Per the study, this underscores the need for climate-resilient malaria control strategies and emergency response systems to protect progress toward eradication goals in a changing climate.
+                    </div>
+                    <button class="expand-btn" onclick="document.getElementById('summary7').classList.toggle('expanded')">
+                        📖 Read More...
+                    </button>
+                    <div class="card-meta">
+                        <span>Source: Nature</span>
+                        <a href="https://www.nature.com/nature/research-articles" class="card-link" target="_blank">Research Paper</a>
+                    </div>
                 </div>
-            </article>
-
-            <!-- Minnesota Immigration -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-high"></span>
-                    CHAMBER-008 // DOMESTIC
-                </div>
-                <h2 class="chamber-headline">Trump White House Faces Bipartisan Backlash Over Minnesota Immigration Crackdown</h2>
-                <p class="chamber-summary">Cracks are emerging inside the Republican Party over the Trump administration's handling of its immigration crackdown in Minnesota and beyond. The White House shifted its response to a Minneapolis shooting after bipartisan outrage. Democrats have vowed to block Homeland Security funding following the incident. A former CBP head stated that Border Patrol agents are untrained and unskilled for policing in urban areas. The controversy comes as polling shows public pressure mounting on the administration's immigration approach.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">PBS</span>
-                    <a href="https://www.pbs.org/video/january-26-2026-pbs-news-hour-full-episode-1769403603/" class="chamber-link" target="_blank">Read Full Report →</a>
-                </div>
-            </article>
-
-            <!-- Paranthropus -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-low"></span>
-                    CHAMBER-009 // PALEONTOLOGY
-                </div>
-                <h2 class="chamber-headline">2.6-Million-Year-Old Jaw Extends Paranthropus Range Into Ethiopia's Afar Region</h2>
-                <p class="chamber-summary">Research published in Nature on January 26, 2026, describes a partial mandible attributed to Paranthropus that expands the genus's known geographic range into the Afar region of Ethiopia. Led by Zeresenay Alemseged and Fred Spoor, the discovery adds crucial data about hominin evolution in eastern Africa during a period when multiple hominin species coexisted. The find helps fill gaps in our understanding of where different early human relatives lived and how they may have interacted.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Nature</span>
-                    <a href="https://www.nature.com/nature/research-articles" class="chamber-link" target="_blank">Read Full Report →</a>
-                </div>
-            </article>
-
-            <!-- NIH Advisory -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-high"></span>
-                    CHAMBER-010 // SCIENCE POLICY
-                </div>
-                <h2 class="chamber-headline">NIH Advisory Councils Face Collapse as Voting Members Disappear</h2>
-                <p class="chamber-summary">Nature reported on January 22, 2026, that thirteen NIH advisory councils—which must review grant applications before funding is awarded—are on track to have no voting members. The councils have been depleted under the Trump administration's restructuring of the agency, creating a potential bottleneck in the grant review process that could delay or block billions in research funding. The situation represents an unprecedented disruption to NIH's peer review infrastructure.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Nature</span>
-                    <a href="https://www.nature.com/nature/articles?year=2026" class="chamber-link" target="_blank">Read Full Report →</a>
-                </div>
-            </article>
-
-            <!-- Breath Metabolites -->
-            <article class="pressure-chamber">
-                <div class="chamber-id">
-                    <span class="pressure-indicator pressure-low"></span>
-                    CHAMBER-011 // BIOMEDICAL
-                </div>
-                <h2 class="chamber-headline">Breath Metabolites Could Diagnose Disease by Revealing Gut Microbiome Composition</h2>
-                <p class="chamber-summary">Research published in Nature on January 22, 2026, found that metabolites in mouse and human breath correlate to gut microbe populations and might be useful for diagnosing disease. The non-invasive technique could allow doctors to assess the gut microbiome—increasingly linked to conditions from obesity to depression—without stool samples. The correlation between breath chemistry and microbial populations suggests the gut-lung axis is more direct than previously understood.</p>
-                <div class="chamber-meta">
-                    <span class="chamber-source">Nature</span>
-                    <a href="https://www.nature.com/nature/articles?year=2026" class="chamber-link" target="_blank">Read Full Report →</a>
-                </div>
-            </article>
+            </div>
         </div>
 
-        <div class="control-panel">
-            <p>The barocaloric cooling story suggested this entire aesthetic—pressure vessels, gauges, phase transitions. It's a weird kind of poetry: applying pressure to household chemicals creates cold without emissions. So today's news becomes a system of chambers, each holding stories under different pressures. Some run hot (conflicts, crises), others run cool (markets, science). The needle hovers where it will. The pressure gauge reading of 2.6 GPa is a nod to the jaw fossil—2.6 million years old, finding new pressure points in human evolution.</p>
+        <div class="gif-section">
+            <div class="gif-container">
+                <div class="gif-item">
+                    <svg width="88" height="31" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="88" height="31" fill="#000"/>
+                        <text x="44" y="20" font-family="Arial" font-size="14" fill="lime" text-anchor="middle" font-weight="bold">NEW!</text>
+                    </svg>
+                </div>
+                <div class="gif-item">
+                    <svg width="88" height="31" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="88" height="31" fill="#ff0000"/>
+                        <text x="44" y="20" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">HOT!</text>
+                    </svg>
+                </div>
+                <div class="gif-item">
+                    <svg width="88" height="31" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="88" height="31" fill="#0000ff"/>
+                        <text x="44" y="20" font-family="Arial" font-size="14" fill="yellow" text-anchor="middle" font-weight="bold">COOL!</text>
+                    </svg>
+                </div>
+            </div>
         </div>
 
-        <footer>
-            <p>news.sys — A daily pressure test — Designed January 28, 2026</p>
-        </footer>
+        <div class="footer">
+            <div class="footer-title">🎨 Webmaster's Notes</div>
+            <div class="designer-notes">
+                Today's news felt like the information overload of early web surfing—political violence, international deaths, corporate wins, geopolitical posturing, all shouting for attention simultaneously. So I channeled peak Geocities: everything gets a window with fake chrome, Comic Sans reigns supreme, and stories compete like browser pop-ups. The Omar attack is genuinely alarming, but wrapping heavy news in nostalgic camp creates weird breathing room. Sometimes the best way to process chaos is to remember when the whole internet looked like chaos.
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <div class="badge-img" style="display: inline-block; padding: 10px;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; text-align: center;">
+                        <div style="font-weight: bold;">[ news.sys ]</div>
+                        <div>est. 2026</div>
+                        <div style="color: #666;">Daily News, Designed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="webring">
+            <p>This site is part of the <strong>Retro News Webring</strong></p>
+            <p><a href="#">&lt;&lt; Previous</a> | <a href="#">Random</a> | <a href="#">Next &gt;&gt;</a></p>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0; font-size: 11px; color: #666; font-family: Arial, sans-serif;">
+            <p>© 2026 news.sys | All Rights Reserved | <a href="#" style="color: blue;">Email the Webmaster</a></p>
+            <p>Optimized for 800x600 resolution | Get Netscape Navigator 4.0!</p>
+        </div>
     </div>
+
+    <script>
+        // Animate counter on load
+        window.addEventListener('load', () => {
+            const digits = document.querySelectorAll('.counter-digit');
+            let count = 0;
+            const interval = setInterval(() => {
+                if (count < 50) {
+                    digits.forEach(digit => {
+                        digit.textContent = Math.floor(Math.random() * 10);
+                    });
+                    count++;
+                } else {
+                    clearInterval(interval);
+                    const finalNumber = '000420';
+                    digits.forEach((digit, i) => {
+                        digit.textContent = finalNumber[i];
+                    });
+                }
+            }, 50);
+        });
+    </script>
 </body>
 </html>
 ```
