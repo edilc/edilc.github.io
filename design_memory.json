@@ -1,10 +1,6 @@
 [
   {
     "date": "2026-01-24",
-    "brief": "Two-thirds of America buried in snow\u2014this is a system crash waiting to happen. The page becomes Windows 98 struggling under the weight of 200 million error messages, where each news story is a dialog box or window fighting for attention. The featured storm dominates like a frozen blue screen, while smaller windows cascade down with protests, diplomacy, and science updates. Everything feels like it's running on limited resources, just barely holding together."
-  },
-  {
-    "date": "2026-01-24",
     "brief": "Two-thirds of America buried under ice and snow\u2014180 million people on alert. Today's design responds with pure typographic scale: the storm story becomes monumentally large (7rem headlines), dominating the page like the weather system itself dominates the continent. Everything else arranges around it in descending hierarchy. No weather graphics, no blue color schemes\u2014just massive type that creates its own gravity, pulling smaller stories into orbit. Let white space and proportion do the atmospheric work."
   },
   {
@@ -38,5 +34,9 @@
   {
     "date": "2026-01-30",
     "brief": "Today's stories are about institutional pressure: the Fed resisting Trump, Congress pressuring DHS, the administration pressuring colleges, and Medicare being squeezed. Every story is about systems under strain. So the page becomes a pressure monitoring system\u2014each story sits in its own pressure chamber with visual indicators of intensity. Strict duotone CRT terminal green on black, maximum contrast."
+  },
+  {
+    "date": "2026-01-31",
+    "brief": "Today's news is a chaotic mix of government dysfunction, legal drama, and institutional pivots\u2014classic January 2026 energy. Following the creative nudge, I'm going full mid-90s Geocities: tiled backgrounds, window chrome, Comic Sans, under-construction GIFs, visitor counters, spinning icons, and click-to-expand articles. Each story is a colorful window-styled card with animated icons, because if you can't have fun with the news, what's the point?"
   }
 ]
