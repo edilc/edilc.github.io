@@ -1,9 +1,5 @@
 [
   {
-    "date": "2026-01-25",
-    "brief": "Pure typographic hierarchy across extreme scale\u2014from 9rem hero headlines to compact 1.25rem treatments. The winter storm dominates like it dominates the continent, with subsequent stories arranged by visual weight rather than chronology. Minimal decoration: just clean sans-serif type, generous whitespace, and large numerals as the only graphic element. Space Grotesk provides geometric precision with warmth."
-  },
-  {
     "date": "2026-01-26",
     "brief": "Today's news has a strong scientific thread\u2014CRISPR breakthroughs, DNA methylation, immune cell mapping. The design responds with a laboratory aesthetic: petri dishes (circular cards), microscope slides (featured stories), and an animated DNA helix in the header. Clean, specimen-like presentation that treats each story as something to examine and analyze. A refreshing shift from recent typographic approaches."
   },
@@ -37,6 +33,10 @@
   },
   {
     "date": "2026-02-02",
+    "brief": "No design brief found in generated HTML"
+  },
+  {
+    "date": "2026-02-03",
     "brief": "No design brief found in generated HTML"
   }
 ]
