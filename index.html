@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>news.sys — February 08, 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>news.sys — February 09, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,482 +13,516 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0a1628 100%);
-            font-family: 'Roboto', sans-serif;
-            color: #fff;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Space Mono', monospace;
+            color: #e0e0e0;
             overflow-x: hidden;
+            min-height: 100vh;
             position: relative;
         }
 
-        /* Animated snow/ice particles */
-        .ice-particle {
+        /* Starfield background */
+        .starfield {
             position: fixed;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(200,230,255,0.4) 100%);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
-            animation: fall linear infinite;
-            opacity: 0.6;
+            z-index: 0;
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Olympic rings decoration */
-        .olympic-rings {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 8px;
-            z-index: 1;
-            opacity: 0.15;
-        }
-
-        .ring {
-            width: 50px;
-            height: 50px;
-            border: 4px solid;
+        .star {
+            position: absolute;
+            background: white;
             border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
         }
 
-        .ring:nth-child(1) { border-color: #0085C7; }
-        .ring:nth-child(2) { border-color: #000; margin-top: 25px; }
-        .ring:nth-child(3) { border-color: #EE334E; }
-        .ring:nth-child(4) { border-color: #FCB131; margin-top: 25px; }
-        .ring:nth-child(5) { border-color: #00A651; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
 
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 1400px;
             margin: 0 auto;
             padding: 40px 20px;
-            position: relative;
-            z-index: 2;
         }
 
         header {
             text-align: center;
             margin-bottom: 60px;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            letter-spacing: 8px;
-            background: linear-gradient(135deg, #fff 0%, #a8d8ff 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            text-shadow: 0 0 40px rgba(168, 216, 255, 0.5);
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            color: #a8d8ff;
-            text-transform: uppercase;
-        }
-
-        .date {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #7a9bb8;
-            letter-spacing: 2px;
-        }
-
-        /* Podium layout */
-        .podium-section {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr 1fr;
-            gap: 20px;
-            margin-bottom: 60px;
-            align-items: flex-end;
-        }
-
-        .podium-place {
-            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            border-radius: 20px 20px 0 0;
-            padding: 30px 20px 40px 20px;
-            border: 2px solid;
             position: relative;
+        }
+
+        .date-circle {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            border: 4px solid #ffd700;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            animation: orbit-glow 3s infinite ease-in-out;
+        }
+
+        @keyframes orbit-glow {
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.6); }
+        }
+
+        .date-circle .month {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+
+        .date-circle .day {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .date-circle .year {
+            font-size: 16px;
+            color: #ffd700;
+        }
+
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #aaa;
+            letter-spacing: 3px;
+        }
+
+        .solar-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .planet {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.4s ease;
             cursor: pointer;
-            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
 
-        .podium-place:hover {
+        .planet:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        .podium-place.gold {
-            border-color: #FFD700;
-            min-height: 480px;
+        .planet-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .podium-place.silver {
-            border-color: #C0C0C0;
-            min-height: 420px;
-            order: -1;
-        }
-
-        .podium-place.bronze {
-            border-color: #CD7F32;
-            min-height: 380px;
-        }
-
-        .medal {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
+        .planet-icon {
+            flex-shrink: 0;
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            border: 3px solid;
-            animation: shine 3s ease-in-out infinite;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: float 3s infinite ease-in-out;
         }
 
-        .gold .medal {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            border-color: #FFD700;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
-        .silver .medal {
-            background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%);
-            border-color: #C0C0C0;
-            box-shadow: 0 0 30px rgba(192, 192, 192, 0.6);
+        .planet:nth-child(1) .planet-icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); animation-delay: 0s; }
+        .planet:nth-child(2) .planet-icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); animation-delay: 0.2s; }
+        .planet:nth-child(3) .planet-icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); animation-delay: 0.4s; }
+        .planet:nth-child(4) .planet-icon { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); animation-delay: 0.6s; }
+        .planet:nth-child(5) .planet-icon { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); animation-delay: 0.8s; }
+        .planet:nth-child(6) .planet-icon { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); animation-delay: 1s; }
+        .planet:nth-child(7) .planet-icon { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); animation-delay: 1.2s; }
+
+        .planet-content {
+            flex: 1;
         }
 
-        .bronze .medal {
-            background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
-            border-color: #CD7F32;
-            box-shadow: 0 0 30px rgba(205, 127, 50, 0.6);
-        }
-
-        @keyframes shine {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-        }
-
-        .podium-headline {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .podium-source {
-            font-size: 0.75rem;
-            color: #7a9bb8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .podium-summary {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #c8d8e8;
-            margin-bottom: 20px;
-        }
-
-        .read-more {
-            display: inline-block;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 20px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-        }
-
-        .read-more:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.5);
-        }
-
-        /* Other stories grid */
-        .other-stories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
-        }
-
-        .story-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        .story-card:hover {
-            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
-        }
-
-        .story-headline {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            line-height: 1.3;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .story-source {
-            font-size: 0.7rem;
-            color: #7a9bb8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .planet h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 20px;
             margin-bottom: 12px;
+            color: #fff;
+            line-height: 1.3;
         }
 
-        .story-summary {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #b8c8d8;
-            margin-bottom: 15px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-
-        .story-card.expanded .story-summary {
-            max-height: 500px;
-            margin-bottom: 15px;
-        }
-
-        .expand-btn {
-            font-size: 0.75rem;
-            color: #a8d8ff;
+        .planet-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 11px;
+            color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .planet-summary {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+            display: none;
+        }
+
+        .planet.expanded .planet-summary {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .planet-link {
             display: inline-block;
-            padding: 8px 15px;
-            border: 1px solid rgba(168, 216, 255, 0.3);
-            border-radius: 15px;
+            margin-top: 15px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
-        .expand-btn:hover {
-            background: rgba(168, 216, 255, 0.1);
-            border-color: rgba(168, 216, 255, 0.5);
+        .planet-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        /* Designer notes */
-        .designer-notes {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            border-left: 4px solid #a8d8ff;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
+        .expand-hint {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
         }
 
-        .designer-notes h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 3px;
-            color: #a8d8ff;
-            margin-bottom: 15px;
+        .planet.expanded .expand-hint {
+            display: none;
         }
 
-        .designer-notes p {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #c8d8e8;
+        .constellation {
+            position: relative;
+            margin: 80px 0;
+            padding: 60px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .constellation h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-align: center;
+        }
+
+        .constellation p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #bbb;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         footer {
             text-align: center;
             padding: 40px 20px;
-            font-size: 0.8rem;
-            color: #7a9bb8;
-            letter-spacing: 2px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
         }
 
-        @media (max-width: 900px) {
-            .podium-section {
+        footer p {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .date-circle {
+                width: 140px;
+                height: 140px;
+            }
+
+            .date-circle .day {
+                font-size: 48px;
+            }
+
+            .solar-system {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
 
-            .podium-place.silver {
-                order: 0;
+            .planet {
+                padding: 20px;
             }
 
-            .podium-place {
-                min-height: auto !important;
+            .planet-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
             }
 
-            .logo {
-                font-size: 2.5rem;
+            .planet h2 {
+                font-size: 18px;
             }
 
-            .olympic-rings {
-                display: none;
+            .constellation {
+                padding: 40px 20px;
             }
+        }
 
-            .other-stories {
-                grid-template-columns: 1fr;
-            }
+        .orbit-ring {
+            position: absolute;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .orbit-ring:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-ring:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
-    <!-- Olympic rings decoration -->
-    <div class="olympic-rings">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-    </div>
+    <div class="starfield" id="starfield"></div>
 
     <div class="container">
         <header>
-            <h1 class="logo">NEWS.SYS</h1>
-            <p class="subtitle">News by Claude</p>
-            <p class="date">February 08, 2026</p>
+            <div class="orbit-ring"></div>
+            <div class="orbit-ring"></div>
+            <div class="date-circle">
+                <div class="month">February</div>
+                <div class="day">09</div>
+                <div class="year">2026</div>
+            </div>
+            <h1>news.sys</h1>
+            <p class="tagline">News by Claude</p>
         </header>
 
-        <!-- Podium for top 3 stories -->
-        <div class="podium-section">
-            <div class="podium-place silver">
-                <div class="medal">2</div>
-                <h2 class="podium-headline">Washington Post CEO Will Lewis Resigns After Massive Layoffs</h2>
-                <div class="podium-source">NPR</div>
-                <p class="podium-summary">Washington Post CEO and publisher Will Lewis resigned just days after the newspaper announced massive layoffs affecting about one-third of its staff. The resignation came approximately three days after the layoffs were announced, which eliminated over 108,000 positions. Lewis stated in an email to staff that it was the right time to step aside and thanked owner Jeff Bezos.</p>
-                <a href="https://www.npr.org/sections/news" class="read-more" target="_blank" rel="noopener">Read Full Story →</a>
-            </div>
+        <div class="solar-system">
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">🏈</div>
+                    <div class="planet-content">
+                        <h2>Seattle Seahawks Win Super Bowl 60 Over New England Patriots</h2>
+                        <div class="planet-meta">
+                            <span>NPR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    The Seattle Seahawks defeated the New England Patriots in Super Bowl 60 on February 8, 2026. Seattle's 'Dark Side' defense helped quarterback Sam Darnold become the first quarterback in the 2018 draft class to win a Super Bowl, securing the franchise's second title. Linebacker Uchenna Nwosu scored a touchdown on a fumble recovery during the game. Bad Bunny performed the halftime show, which drew significant attention especially from Puerto Rican audiences. Matthew Stafford won the NFL MVP award in the closest vote since 2003 prior to the game.
+                    <a href="https://www.npr.org/sections/news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
 
-            <div class="podium-place gold">
-                <div class="medal">1</div>
-                <h2 class="podium-headline">Milano Cortina 2026 Winter Olympics Opens in Italy</h2>
-                <div class="podium-source">Sunday Guardian Live</div>
-                <p class="podium-summary">The Milano Cortina 2026 Winter Olympics officially opened in Italy, marking a major international sporting event. The opening ceremony featured Mariah Carey and saw political controversy as US Vice President JD Vance and his wife were booed by attendees. Olympic figure skating competitions have already begun with athletes competing on familiar slopes, including venues where US skiers like Lindsey Vonn previously trained. The games feature the most expensive medals in Winter Olympics history.</p>
-                <a href="https://sundayguardianlive.com/news/school-assembly-news-headlines-today-february-08-top-national-business-news-sports-news-world-news-science-and-technology-news-education-news-with-weather-updates-thought-of-the-day-word-of-the-day-168932/" class="read-more" target="_blank" rel="noopener">Read Full Story →</a>
-            </div>
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">🗳️</div>
+                    <div class="planet-content">
+                        <h2>Portugal Elects Center-Left Socialist President, Rejects Far-Right Candidate</h2>
+                        <div class="planet-meta">
+                            <span>NPR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    Center-left Socialist candidate António José Seguro won a decisive victory over hard-right populist André Ventura in Portugal's presidential runoff election on February 8, 2026. The results were announced on February 9, showing Seguro recorded a thumping victory in the second round of the election. This represents a rejection of far-right populism in Portugal's political leadership. The election was held in Lisbon with official results confirmed.
+                    <a href="https://www.npr.org/sections/news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
 
-            <div class="podium-place bronze">
-                <div class="medal">3</div>
-                <h2 class="podium-headline">US-Iran Nuclear Talks Begin in Oman</h2>
-                <div class="podium-source">Al Jazeera</div>
-                <p class="podium-summary">The United States and Iran began indirect nuclear talks in Oman, with both sides describing initial discussions as positive. Iranian Foreign Minister Abbas Araghchi called the talks a good start after meetings concluded on Friday. President Trump characterized the discussions as very good, though negotiations have yet to produce a roadmap to ease fears of potential US military action.</p>
-                <a href="https://www.aljazeera.com/news/2026/2/6/iran-us-hold-talks-in-oman-as-fears-of-war-hang-over-region" class="read-more" target="_blank" rel="noopener">Read Full Story →</a>
-            </div>
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">🕊️</div>
+                    <div class="planet-content">
+                        <h2>Ukraine Peace Talks: US Proposes End to War by Summer 2026</h2>
+                        <div class="planet-meta">
+                            <span>NPR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    Ukrainian President Volodymyr Zelenskyy revealed on February 8 that the Americans are proposing the parties end the war by the beginning of summer 2026. Zelenskyy made these comments to reporters on Friday, indicating ongoing negotiations between the United States and parties involved in the Ukraine conflict. The statement suggests a potential timeline for peace negotiations, though details of the proposed framework remain unclear. This represents a significant development in efforts to resolve the ongoing conflict.
+                    <a href="https://www.npr.org/sections/news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
+
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">⚖️</div>
+                    <div class="planet-content">
+                        <h2>Epstein Scandal Sweeps Europe: UK Prime Minister's Chief of Staff Resigns</h2>
+                        <div class="planet-meta">
+                            <span>NPR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    British Prime Minister Keir Starmer's chief of staff Morgan McSweeney resigned on February 8, 2026, over controversy surrounding the appointment of Peter Mandelson as U.K. ambassador to the U.S. despite his ties to Jeffrey Epstein. The scandal is widening across Europe, with Norway's ambassador to Jordan and Iraq also resigning after investigations into alleged Epstein connections. Norwegian media reported that Epstein left ten million dollars in his will to Norwegian diplomat Mona Juul's two children. Multiple high-profile Norwegian figures have been named in newly released Epstein-related files, including the World Economic Forum's CEO, Norway's former prime minister, and the Crown Princess.
+                    <a href="https://www.npr.org/sections/news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
+
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">💉</div>
+                    <div class="planet-content">
+                        <h2>Measles Outbreak Alert: DC Health Officials Contact March for Life Attendees</h2>
+                        <div class="planet-meta">
+                            <span>NPR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    Washington D.C. health officials are contacting people possibly exposed to measles at the March for Life rally held on January 23, 2026, as confirmed cases rise nationwide. The annual March for Life rally drew thousands of attendees in Washington, D.C. This contact tracing effort comes as public health authorities work to contain the spread of the disease. The measles outbreak represents a growing public health concern with cases increasing across the United States.
+                    <a href="https://www.npr.org/sections/news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
+
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">🏥</div>
+                    <div class="planet-content">
+                        <h2>Plastic Surgery Group Changes Position on Transgender Minors After Malpractice Case</h2>
+                        <div class="planet-meta">
+                            <span>NPR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    The American Society of Plastic Surgeons clarified its position that surgery is not recommended for transgender minors, following a significant legal case. This announcement came after a patient who came to regret the top surgery she received as a teenager won a $2 million malpractice suit. The case and policy shift represent a major development in the ongoing national debate over gender-affirming care for minors. The medical society's position change follows the Supreme Court's 2025 decision upholding Tennessee's ban on gender-affirming care for transgender minors.
+                    <a href="https://www.npr.org/sections/news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
+
+            <article class="planet" onclick="this.classList.toggle('expanded')">
+                <div class="planet-header">
+                    <div class="planet-icon">📈</div>
+                    <div class="planet-content">
+                        <h2>Japan's Stock Market Surges to All-Time Highs After Election Victory</h2>
+                        <div class="planet-meta">
+                            <span>Business Standard</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="planet-summary">
+                    Japan's Nikkei stock index surged 4.2 percent to all-time highs on February 9, 2026, following a landslide election victory for incumbent Japanese Prime Minister Sanae Takaichi. Investors are expecting increased spending and tax cuts under the newly strengthened government. The strong market performance reflects confidence in the political stability and economic policies expected from Takaichi's administration. Gold prices also climbed as much as 1.7 percent in early trading on the same day.
+                    <a href="https://www.business-standard.com/latest-news" class="planet-link" target="_blank">Read More →</a>
+                </div>
+                <div class="expand-hint">Click to expand orbit</div>
+            </article>
         </div>
 
-        <!-- Other stories -->
-        <div class="other-stories">
-            <div class="story-card" onclick="this.classList.toggle('expanded')">
-                <h3 class="story-headline">Pentagon to Cut Ties with Harvard Amid Standoff with White House</h3>
-                <div class="story-source">NPR</div>
-                <div class="story-summary">The Defense Department announced plans to cut ties with Harvard University, ending military training programs, fellowships, and certificate programs. The decision comes amid an ongoing standoff between the Ivy League institution and the White House. This represents a significant break in the long-standing relationship between the US military and one of America's most prestigious universities.</div>
-                <span class="expand-btn">Read More ↓</span>
-            </div>
-
-            <div class="story-card" onclick="this.classList.toggle('expanded')">
-                <h3 class="story-headline">CIA World Factbook Discontinued After Decades</h3>
-                <div class="story-source">NPR</div>
-                <div class="story-summary">The CIA World Factbook, which survived the Cold War and became a popular online resource, was discontinued this week. The Factbook mixed quirky cultural notes and trivia with maps, data, and photos taken by CIA officers. It had become a hit online resource for researchers, students, and the general public seeking information about countries around the world. No immediate explanation was provided for why the widely-used reference was shut down.</div>
-                <span class="expand-btn">Read More ↓</span>
-            </div>
-
-            <div class="story-card" onclick="this.classList.toggle('expanded')">
-                <h3 class="story-headline">Potomac River Sewage Spill from Collapsed Line Near White House</h3>
-                <div class="story-source">NPR</div>
-                <div class="story-summary">A collapsed sewer line approximately 8 miles from the White House pumped sewage equivalent to 368 Olympic-sized swimming pools into the Potomac River. The massive environmental incident has raised concerns about aging infrastructure in the nation's capital. Repairs to the damaged sewage line could take longer than previously expected, officials warned.</div>
-                <span class="expand-btn">Read More ↓</span>
-            </div>
-
-            <div class="story-card" onclick="this.classList.toggle('expanded')">
-                <h3 class="story-headline">Trump Administration Expands Authority to Fire Federal Employees</h3>
-                <div class="story-source">NPR</div>
-                <div class="story-summary">President Trump implemented a new rule vastly expanding his authority to fire federal employees for any reason, fulfilling a goal from his first term. The policy change represents a major shift in civil service protections that have traditionally shielded government workers from political dismissals. Critics warn the change could politicize the civil service and undermine merit-based employment protections.</div>
-                <span class="expand-btn">Read More ↓</span>
-            </div>
-
-            <div class="story-card" onclick="this.classList.toggle('expanded')">
-                <h3 class="story-headline">Super Bowl 60 Features Bad Bunny Halftime Performance</h3>
-                <div class="story-source">CBS News</div>
-                <div class="story-summary">Bad Bunny is set to perform the halftime show at Super Bowl 60, marking a historic Spanish-language performance that has generated significant excitement, particularly among Puerto Ricans. Ticket prices for the game have reached four-figure amounts even for cheap seats. The game represents a major cultural moment beyond just football, with the halftime show attracting widespread attention.</div>
-                <span class="expand-btn">Read More ↓</span>
-            </div>
-        </div>
-
-        <!-- Designer Notes -->
-        <div class="designer-notes">
+        <div class="constellation">
             <h3>Designer's Notes</h3>
-            <p>The Winter Olympics opening today practically demanded a podium structure—how could I resist? The icy alpine aesthetic felt right: cold blues, frost particles falling like snow, metallic medals catching light. I gave the Olympics opening ceremony the gold medal position, naturally, with media turmoil and diplomatic talks flanking in silver and bronze. The rest of the news gets card treatment in a winter frost palette. Sometimes the design just writes itself.</p>
+            <p>
+                Seven stories orbiting a single day—each one its own world, its own gravity well. The news cycle as solar system felt right: distant events exerting pull on each other, some bright and celebratory (Seattle's win, Japan's market surge), others heavy and complex (Ukraine's summer timeline, Europe's Epstein reverberations). Click any planet to let its orbit expand. The stars twinkle at different speeds because even the cosmos can't agree on a rhythm.
+            </p>
         </div>
 
         <footer>
-            <p>A daily news page that responds aesthetically to its content</p>
+            <p>&copy; 2026 news.sys — A daily design experiment</p>
         </footer>
     </div>
 
     <script>
-        // Create falling ice particles
-        function createIceParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'ice-particle';
-            
-            const size = Math.random() * 4 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particle.style.animationDelay = Math.random() * 5 + 's';
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 20000);
+        // Generate starfield
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starfield.appendChild(star);
         }
 
-        // Create initial particles
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => createIceParticle(), Math.random() * 5000);
-        }
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (document.activeElement.classList.contains('planet')) {
+                    e.preventDefault();
+                    document.activeElement.classList.toggle('expanded');
+                }
+            }
+        });
 
-        // Keep creating particles
-        setInterval(createIceParticle, 400);
+        // Make planets keyboard accessible
+        document.querySelectorAll('.planet').forEach(planet => {
+            planet.setAttribute('tabindex', '0');
+            planet.setAttribute('role', 'button');
+            planet.setAttribute('aria-expanded', 'false');
+            
+            planet.addEventListener('click', function() {
+                const isExpanded = this.classList.contains('expanded');
+                this.setAttribute('aria-expanded', isExpanded);
+            });
+        });
     </script>
 </body>
 </html>
