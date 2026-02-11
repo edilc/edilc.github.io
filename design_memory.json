@@ -1,9 +1,5 @@
 [
   {
-    "date": "2026-02-01",
-    "brief": "Today is about institutional friction and human stories caught in machinery\u2014shutdowns, detentions, protests, investigations. The creative nudge says \"make typography the star,\" so this is pure typographic hierarchy: five different type treatments, each story gets its visual weight through scale, spacing, and font choice alone. No color, no decoration\u2014just black ink on cream paper, letting rhythm and proportion do all the work."
-  },
-  {
     "date": "2026-02-02",
     "brief": "No design brief found in generated HTML"
   },
@@ -38,5 +34,9 @@
   {
     "date": "2026-02-10",
     "brief": "Lindsey Vonn's devastating crash in the freezing Italian Alps became the conceptual anchor\u2014the page is frozen in ice. Temperature metaphors dominate: a thermometer measures the \"heat\" of today's breaking news, ice crystals drift across the viewport, and stories are presented as weather conditions in sub-zero clarity. The Olympics deserve metallic podium treatment while other stories exist as crystallized moments in frost."
+  },
+  {
+    "date": "2026-02-11",
+    "brief": "Nuclear inspections, FBI investigations, government files\u2014today's news is full of sealed documents being opened, systems being interrogated, permissions being granted or denied. The page becomes a command-line interface viewing classified files at different security clearances. Each story is a file to be accessed, with priority levels determining visual urgency. The terminal aesthetic matches the investigative, procedural nature of today's surveillance-heavy news cycle."
   }
 ]
