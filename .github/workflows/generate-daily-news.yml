@@ -1,10 +1,10 @@
 name: Generate Daily News
 
-on:
+# on:
   # Run daily at 5:00 AM EST (10:00 AM UTC)
   # Note: During EDT (daylight saving), this runs at 6:00 AM EDT
-  schedule:
-    - cron: '0 10 * * *'
+  # schedule:
+    # - cron: '0 10 * * *'
 
   # Allow manual trigger
   workflow_dispatch:
