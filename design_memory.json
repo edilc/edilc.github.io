@@ -1,9 +1,5 @@
 [
   {
-    "date": "2026-02-02",
-    "brief": "No design brief found in generated HTML"
-  },
-  {
     "date": "2026-02-03",
     "brief": "No design brief found in generated HTML"
   },
@@ -38,5 +34,9 @@
   {
     "date": "2026-02-11",
     "brief": "Nuclear inspections, FBI investigations, government files\u2014today's news is full of sealed documents being opened, systems being interrogated, permissions being granted or denied. The page becomes a command-line interface viewing classified files at different security clearances. Each story is a file to be accessed, with priority levels determining visual urgency. The terminal aesthetic matches the investigative, procedural nature of today's surveillance-heavy news cycle."
+  },
+  {
+    "date": "2026-02-12",
+    "brief": "Van Der Beek's death demanded something respectful, commemorative\u2014an obituary page, but dignified. Today becomes a memorial broadsheet: black ribbon across the top, his story in a mourning-bordered frame, other news organized with typographic restraint. It's quiet, classical, serious without being melodramatic. The page pays respect without pretending the world stopped."
   }
 ]
